@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://eyff36cp2io3"]
+[gd_scene load_steps=3 format=3 uid="uid://eyff36cp2io3"]
 
 [ext_resource type="Script" path="res://MainMenuControl.gd" id="1_tr6f7"]
+[ext_resource type="Texture2D" uid="uid://b1ijgi4fbgnm5" path="res://assets/gfx/menu_button.png" id="2_bktn5"]
 
 [node name="Node2D" type="Node2D"]
 
@@ -19,16 +20,40 @@ offset_top = 461.0
 offset_right = 367.0
 offset_bottom = 864.0
 
-[node name="NewGameButton" type="Button" parent="Control/VBoxContainer"]
+[node name="NewGameButton" type="TextureButton" parent="Control/VBoxContainer"]
 layout_mode = 2
+texture_normal = ExtResource("2_bktn5")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Control/VBoxContainer/NewGameButton"]
+layout_mode = 0
+offset_left = 54.0
+offset_top = 3.0
+offset_right = 144.0
+offset_bottom = 43.0
 text = "New Game"
 
-[node name="CreditsButton" type="Button" parent="Control/VBoxContainer"]
+[node name="CreditsButton" type="TextureButton" parent="Control/VBoxContainer"]
 layout_mode = 2
+texture_normal = ExtResource("2_bktn5")
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="Control/VBoxContainer/CreditsButton"]
+layout_mode = 2
+offset_left = 66.0
+offset_top = 3.0
+offset_right = 122.0
+offset_bottom = 33.0
 text = "Credits"
 
-[node name="QuitGameButton" type="Button" parent="Control/VBoxContainer"]
+[node name="QuitGameButton" type="TextureButton" parent="Control/VBoxContainer"]
 layout_mode = 2
-text = "Quit"
+texture_normal = ExtResource("2_bktn5")
+
+[node name="RichTextLabel3" type="RichTextLabel" parent="Control/VBoxContainer/QuitGameButton"]
+layout_mode = 2
+offset_left = 53.0
+offset_top = 3.0
+offset_right = 151.0
+offset_bottom = 36.0
+text = "Quit Game"
 
 [connection signal="pressed" from="Control/VBoxContainer/QuitGameButton" to="Control" method="onQuitGameButtonPressed"]
