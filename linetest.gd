@@ -25,7 +25,7 @@ func add_point(line, point):
 	var last_point = line.points[-1]
 	line.add_point(point)
 
-	var body = line.get_node("Staticbody")
+	var body = line.get_node("Area")
 	var shape = CollisionShape2D.new()
 	var rect = RectangleShape2D.new()
 
