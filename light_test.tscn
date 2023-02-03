@@ -1,0 +1,28 @@
+[gd_scene load_steps=7 format=3 uid="uid://dnny8ro51lyc3"]
+
+[ext_resource type="Texture2D" uid="uid://dv3wqd5ajjukp" path="res://assets/gfx/planet.png" id="1_mjfil"]
+[ext_resource type="Texture2D" uid="uid://bvpssq4vdwi0o" path="res://assets/gfx/tree.png" id="2_aaibi"]
+[ext_resource type="Texture2D" uid="uid://dqbg84vrx58b4" path="res://assets/gfx/tree_normal.png" id="3_5cud3"]
+[ext_resource type="Texture2D" uid="uid://8mr7pl1snam6" path="res://assets/gfx/light.png" id="4_pnh1h"]
+[ext_resource type="Script" path="res://Sun.gd" id="5_1xqyx"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_7vluy"]
+diffuse_texture = ExtResource("2_aaibi")
+normal_texture = ExtResource("3_5cud3")
+
+[node name="game" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(563.515, 352.333)
+texture = ExtResource("1_mjfil")
+
+[node name="Tree" type="Sprite2D" parent="."]
+position = Vector2(568.515, 130.333)
+texture = SubResource("CanvasTexture_7vluy")
+
+[node name="Sun" type="PointLight2D" parent="."]
+position = Vector2(555.515, -37.6667)
+scale = Vector2(2.21212, 1.66667)
+energy = 3.02
+texture = ExtResource("4_pnh1h")
+script = ExtResource("5_1xqyx")
