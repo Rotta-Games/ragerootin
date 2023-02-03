@@ -1,8 +1,42 @@
-[gd_scene load_steps=2 format=3 uid="uid://cnqjxco0jwax3"]
+[gd_scene load_steps=4 format=3 uid="uid://dk1e5r83rraht"]
 
 [ext_resource type="Texture2D" uid="uid://dv3wqd5ajjukp" path="res://assets/gfx/planet.png" id="1_jqjye"]
+[ext_resource type="Texture2D" uid="uid://bvpssq4vdwi0o" path="res://assets/gfx/tree.png" id="2_3kfm1"]
+[ext_resource type="Script" path="res://Player1.gd" id="3_5isx4"]
 
 [node name="game" type="Node2D"]
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Earth" type="Sprite2D" parent="."]
+position = Vector2(557, 339)
+rotation = -6.28319
+scale = Vector2(1.8, 1.8)
 texture = ExtResource("1_jqjye")
+
+[node name="Tree1" type="Sprite2D" parent="."]
+position = Vector2(182, 335)
+rotation = 4.71239
+texture = ExtResource("2_3kfm1")
+
+[node name="Tree2" type="Sprite2D" parent="."]
+position = Vector2(930, 335)
+rotation = 1.5708
+texture = ExtResource("2_3kfm1")
+
+[node name="Line2" type="Line2D" parent="."]
+points = PackedVector2Array(805, 163)
+
+[node name="Area" type="Area2D" parent="Line2"]
+
+[node name="Player1" type="Sprite2D" parent="."]
+position = Vector2(258, 338)
+script = ExtResource("3_5isx4")
+
+[node name="Line1" type="Line2D" parent="Player1"]
+points = PackedVector2Array(4, 2)
+
+[node name="Area" type="Area2D" parent="Player1/Line1"]
+
+[node name="RootTimer" type="Timer" parent="Player1"]
+wait_time = 0.01
+
+[connection signal="timeout" from="Player1/RootTimer" to="Player1" method="_on_root_timer_timeout"]
