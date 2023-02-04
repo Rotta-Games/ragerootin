@@ -1,7 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://dk1e5r83rraht"]
+[gd_scene load_steps=6 format=3 uid="uid://dk1e5r83rraht"]
 
 [ext_resource type="Script" path="res://game.gd" id="1_vsqo3"]
-[ext_resource type="PackedScene" path="res://water.tscn" id="2_skadb"]
 [ext_resource type="PackedScene" uid="uid://cqcyu1fsua041" path="res://planet.tscn" id="3_hd06s"]
 [ext_resource type="PackedScene" uid="uid://7m0oglb5jiq0" path="res://player.tscn" id="4_a3mtv"]
 [ext_resource type="PackedScene" uid="uid://hj77gi1ae7yc" path="res://gui.tscn" id="6_4oam8"]
@@ -9,7 +8,6 @@
 
 [node name="game" type="Node2D"]
 script = ExtResource("1_vsqo3")
-water_scene = ExtResource("2_skadb")
 
 [node name="Planet" parent="." instance=ExtResource("3_hd06s")]
 
@@ -20,3 +18,4 @@ water_scene = ExtResource("2_skadb")
 [node name="m" parent="." instance=ExtResource("6_qadn6")]
 
 [node name="Player2" parent="." instance=ExtResource("4_a3mtv")]
+position = Vector2(673, 190)

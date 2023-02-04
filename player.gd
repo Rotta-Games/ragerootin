@@ -2,6 +2,13 @@ extends Sprite2D
 
 @onready var root = $Root
 
+func set_angle(angle):
+	root.angle = angle
+
+func set_layers(own: int, enemy: int):
+	root.set_layers(own, enemy)
+
+
 func _input(event):
 	if event is InputEventKey:
 		if event.keycode == KEY_LEFT:
