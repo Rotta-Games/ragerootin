@@ -9,6 +9,10 @@ var root = null
 @export var own_layer = 0
 @export var enemy_layer = 0
 
+enum {END, SETUP, MOVING}
+
+var state = SETUP
+
 func _ready():
 	root = new_root()
 
