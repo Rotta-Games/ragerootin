@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://luujl0gtps7k"]
+
+[ext_resource type="Texture2D" uid="uid://nmm7bd6urxd5" path="res://assets/gfx/water.png" id="1_yv4ek"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Water" type="Area2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Water"]
+position = Vector2(2.08165e-12, 2.08165e-12)
+texture = ExtResource("1_yv4ek")
