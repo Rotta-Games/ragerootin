@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://hinchqtp386n" path="res://slider.tscn" id="6_qadn6"]
 [ext_resource type="Script" path="res://player2.gd" id="7_nc2dq"]
 [ext_resource type="PackedScene" uid="uid://d0oagn0brtevv" path="res://lights.tscn" id="9_6sf3a"]
+[ext_resource type="PackedScene" uid="uid://crt2x2ntbmfns" path="res://music_player.tscn" id="10_hsxoa"]
 
 [node name="game" type="Node2D"]
 script = ExtResource("1_vsqo3")
@@ -36,3 +37,5 @@ enemy_layer = 1
 [node name="GameBackground" parent="." instance=ExtResource("6_24cua")]
 
 [node name="Lights" parent="." instance=ExtResource("9_6sf3a")]
+
+[node name="Musics" parent="." instance=ExtResource("10_hsxoa")]
