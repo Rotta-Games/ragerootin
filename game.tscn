@@ -37,7 +37,7 @@ points = PackedVector2Array(4, 2)
 [node name="Area" type="Area2D" parent="Player1/Line1"]
 
 [node name="RootTimer" type="Timer" parent="Player1"]
-wait_time = 0.01
+wait_time = 0.171
 
 [node name="GUI" type="CanvasLayer" parent="."]
 visible = false
