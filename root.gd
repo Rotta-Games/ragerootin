@@ -4,11 +4,11 @@ extends Node2D
 @onready var body = $Line2D/BodyArea
 @onready var head = $Line2D/HeadArea
 @onready var timer = $SegmentTimer
+@export var speed = 200
+@export var turn_speed = 10
 
 var alive = true
 var angle = 10
-var speed = 200
-var turn_speed = 10
 var head_pos = Vector2(0, 0)
 var head_dir = Vector2(1, 0)
 
