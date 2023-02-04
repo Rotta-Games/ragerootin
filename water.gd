@@ -2,8 +2,11 @@ extends Node2D
 
 
 @onready var area = $Area2D
+@onready var sprite = $Area2D/AnimatedSprite2D
+@onready var body = $Area2D/CollisionShape2D
 
-var amount = 100
+const MAX_AMOUNT = 100
+var amount = MAX_AMOUNT
 var drain_speed = 10
 
 var rng = RandomNumberGenerator.new()
@@ -23,7 +26,10 @@ func _process(delta):
 	if count or amount <= 20:
 		# small drainage when amount is low
 		amount -= delta + count * delta * drain_speed
-		self.scale = Vector2(amount/100, amount/100)
+		var sprite_scale = amount/MAX_AMOUNT
+		var body_scale = min(1, max(sprite_scale, sprite_scale*2))
+		sprite.scale = Vector2(sprite_scale, sprite_scale)
+		body.scale = Vector2(body_scale, body_scale)
 		if amount <= 0:
 			self.queue_free()
 
