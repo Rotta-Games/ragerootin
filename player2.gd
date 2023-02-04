@@ -6,9 +6,9 @@ func _ready():
 	pass # Replace with function body.
 
 func _physics_process(delta):
-	if Input.is_action_pressed("player1_move_left"):
+	if Input.is_action_pressed("player2_move_left"):
 		root.angle += -root.turn_speed
-	if Input.is_action_pressed("player1_move_right"):
+	if Input.is_action_pressed("player2_move_right"):
 		root.angle += root.turn_speed
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
