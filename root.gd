@@ -4,8 +4,11 @@ extends Node2D
 @onready var body = $Line2D/BodyArea
 @onready var head = $Line2D/HeadArea
 @onready var timer = $SegmentTimer
-@export var speed = 200
-@export var turn_speed = 10
+
+@export var speed = 100
+@export var turn_speed = 100
+@export var max_segments = 100
+@export var max_segment_length = 5
 
 var growing = true
 var angle = 10
@@ -26,6 +29,8 @@ func set_layers(own: int, enemy: int):
 
 
 func _process(delta):
+	if line.get_point_count() >= max_segments:
+		self.growing = false
 	if not growing:
 		return
 	var rotated = head_dir.rotated(angle * delta)
@@ -64,9 +69,13 @@ func move_last_point(point: Vector2):
 	var length = second_last.distance_to(point)
 	rect.extents = Vector2(length / 2, 5)
 
+	if length >= max_segment_length:
+		add_point(point)
+
 
 func _on_segment_timer_timeout():
-	add_point(head_pos)
+	pass
+	# add_point(head_pos)
 
 
 func handle_dead_split(cut_index: int):
