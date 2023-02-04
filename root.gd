@@ -7,7 +7,7 @@ extends Node2D
 @export var speed = 200
 @export var turn_speed = 10
 
-var alive = true
+var growing = true
 var angle = 10
 var head_pos = Vector2(0, 0)
 var head_dir = Vector2(1, 0)
@@ -26,7 +26,7 @@ func set_layers(own: int, enemy: int):
 
 
 func _process(delta):
-	if not alive:
+	if not growing:
 		return
 	var rotated = head_dir.rotated(angle * delta)
 	head_pos += rotated * speed * delta
@@ -69,14 +69,45 @@ func _on_segment_timer_timeout():
 	add_point(head_pos)
 
 
-func _on_body_area_shape_entered(area_rid:RID, area:Area2D, area_shape_index:int, local_shape_index:int):
+func handle_dead_split(cut_index: int):
+	# split the line in two
+	var dead_line = line.duplicate()
+	call_deferred("add_child", dead_line)
+
+	dead_line.width_curve = null
+
+	# remove dead split's collision stuff
+	for child in dead_line.get_children():
+		child.queue_free()
+
+	# remove dead split's points from start to cut
+	for i in range(cut_index + 1):
+		dead_line.remove_point(0)
+
+	# tween dead split's alpha
+	var tween = create_tween()
+	tween.tween_property(dead_line, "modulate", Color(1, 1, 1, 0), 2.0)
+	tween.tween_callback(dead_line.queue_free)
+	tween.tween_callback(tween.kill)
+
+
+func handle_alive_split(cut_index: int):
+	# remove growing split's points from cut to end
+	while line.points.size() > cut_index + 1:
+		line.remove_point(line.points.size()-1)
+		body.remove_child(body.get_child(-1))
+
+	# remove alive split's head collision
+	if line.has_node("HeadArea"):
+		head.queue_free()
+
+	line.width_curve = null
+
+
+func _on_body_area_shape_entered(_area_rid:RID, area:Area2D, _area_shape_index:int, local_shape_index:int):
 	if area.name == "HeadArea":
 		timer.stop()
-		while line.points.size() > local_shape_index + 1:
-			line.remove_point(line.points.size()-1)
-			body.remove_child(body.get_child(-1))
-			if line.has_node("HeadArea"):
-				head.queue_free()
-		self.alive = false
-		line.width_curve = null
+		self.growing = false
 
+		handle_dead_split(local_shape_index)
+		handle_alive_split(local_shape_index)
