@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://cwfuhqg168png"]
+[gd_scene load_steps=2 format=3 uid="uid://d0oagn0brtevv"]
 
-[ext_resource type="PackedScene" uid="uid://botvk53x6ywyg" path="res://sun.tscn" id="1_fwrgd"]
+[ext_resource type="PackedScene" path="res://sun.tscn" id="1_fwrgd"]
 
 [node name="Lights" type="Node2D"]
 
