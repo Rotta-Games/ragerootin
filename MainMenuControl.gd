@@ -29,6 +29,9 @@ func logoDrop():
 	
 	tween.tween_property($VBoxContainer/Logo, "position", $VBoxContainer/Logo_Position.position, 3)
 
+func onCreditsButtonPressed():
+	get_tree().change_scene_to_file("res://credits.tscn")
+
 func onQuitGameButtonPressed():
 	get_tree().quit()
 
