@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://eyff36cp2io3"]
+[gd_scene load_steps=9 format=3 uid="uid://eyff36cp2io3"]
 
 [ext_resource type="Script" path="res://MainMenuControl.gd" id="1_tr6f7"]
 [ext_resource type="Texture2D" uid="uid://b1ijgi4fbgnm5" path="res://assets/gfx/menu_button.png" id="2_bktn5"]
 [ext_resource type="AudioStream" uid="uid://bprgi2ivr3xbt" path="res://assets/music/roots_menu.ogg" id="3_gdb41"]
 [ext_resource type="Texture2D" uid="uid://bfadg58kyknqs" path="res://assets/gfx/bg.png" id="4_gc8f7"]
 [ext_resource type="Texture2D" uid="uid://dv3wqd5ajjukp" path="res://assets/gfx/planet.png" id="5_5bnb4"]
+[ext_resource type="Texture2D" uid="uid://cc80jluy0nje7" path="res://assets/gfx/logo.png" id="6_86aj8"]
 [ext_resource type="Texture2D" uid="uid://bvpssq4vdwi0o" path="res://assets/gfx/tree.png" id="7_krik3"]
 [ext_resource type="Texture2D" uid="uid://b8p2ufu1kj703" path="res://assets/gfx/tree2.png" id="8_23375"]
 
@@ -64,6 +65,14 @@ offset_right = 151.0
 offset_bottom = 28.0
 mouse_filter = 1
 text = "Quit Game"
+
+[node name="Logo" type="Sprite2D" parent="Control/VBoxContainer"]
+z_index = 5
+position = Vector2(121, -279)
+texture = ExtResource("6_86aj8")
+
+[node name="Logo_Position" type="Node2D" parent="Control/VBoxContainer"]
+position = Vector2(121, -70)
 
 [node name="Planet" type="Sprite2D" parent="Control"]
 z_index = 1
