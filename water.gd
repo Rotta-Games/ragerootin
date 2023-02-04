@@ -29,7 +29,7 @@ func _process(delta):
 
 func _on_animated_sprite_2d_animation_finished():
 	var seconds = rng.randf_range(2.0, 5.0)
-	$Timer.start(seconds)
+	$Area2D/Timer.start(seconds)
 
 func _on_timer_timeout():
-	$AnimatedSprite2D.play("default")
+	$Aread2D/AnimatedSprite2D.play("default")
