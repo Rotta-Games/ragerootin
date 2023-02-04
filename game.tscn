@@ -26,6 +26,7 @@ position = Vector2(170, 180)
 
 [node name="Player2" parent="." instance=ExtResource("4_a3mtv")]
 position = Vector2(480, 180)
+rotation = 3.14159
 script = ExtResource("7_nc2dq")
 
 [node name="GameBackground" parent="." instance=ExtResource("6_24cua")]

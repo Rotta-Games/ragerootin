@@ -5,10 +5,12 @@ extends Node2D
 @onready var head = $Line2D/HeadArea
 @onready var timer = $SegmentTimer
 
-@export var speed = 100
-@export var turn_speed = 100
-@export var max_segments = 100
-@export var max_segment_length = 5
+@export var speed = 80
+@export var turn_speed = 270
+@export var max_length = 320
+
+var max_segment_length = 5
+var max_segments = int(max_length / float(max_segment_length))
 
 var growing = true
 var angle = 10
