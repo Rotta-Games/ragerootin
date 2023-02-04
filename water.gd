@@ -15,7 +15,8 @@ func _process(delta):
 	var areas = area.get_overlapping_areas()
 	var count = areas.size()
 
-	if count or amount <= 10:
+	if count or amount <= 20:
+		# small drainage when amount is low
 		amount -= delta + count * delta * drain_speed
 		self.scale = Vector2(amount/100, amount/100)
 		if amount <= 0:
