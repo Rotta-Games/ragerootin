@@ -1,19 +1,63 @@
-[gd_scene load_steps=3 format=3 uid="uid://7c5hvc25dmio"]
+[gd_scene load_steps=9 format=3 uid="uid://7c5hvc25dmio"]
 
-[ext_resource type="Texture2D" uid="uid://nmm7bd6urxd5" path="res://assets/gfx/water.png" id="1_yv4ek"]
+[ext_resource type="Texture2D" uid="uid://birgece44umki" path="res://assets/gfx/water_sheet.png" id="1_5uonc"]
+[ext_resource type="Script" path="res://WaterAnimation.gd" id="1_ljd1y"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tiy8l"]
+atlas = ExtResource("1_5uonc")
+region = Rect2(27, 0, 27, 27)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ysjmm"]
+atlas = ExtResource("1_5uonc")
+region = Rect2(54, 0, 27, 27)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7mc1e"]
+atlas = ExtResource("1_5uonc")
+region = Rect2(81, 0, 27, 27)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_updq8"]
+atlas = ExtResource("1_5uonc")
+region = Rect2(0, 0, 27, 27)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_r5q81"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tiy8l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ysjmm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7mc1e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_updq8")
+}],
+"loop": false,
+"name": &"default",
+"speed": 8.0
+}]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2unld"]
 radius = 12.0416
 
 [node name="Node2D" type="Node2D"]
 
-[node name="Water" type="Area2D" parent="."]
+[node name="Area2D" type="Area2D" parent="."]
 collision_layer = 4
 collision_mask = 3
+script = ExtResource("1_ljd1y")
 
-[node name="Sprite2D" type="Sprite2D" parent="Water"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Area2D"]
 position = Vector2(2.08165e-12, 2.08165e-12)
-texture = ExtResource("1_yv4ek")
+sprite_frames = SubResource("SpriteFrames_r5q81")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Water"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_2unld")
+
+[node name="Timer" type="Timer" parent="Area2D"]
+wait_time = 2.0
+
+[connection signal="animation_finished" from="Area2D/AnimatedSprite2D" to="Area2D" method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="timeout" from="Area2D/Timer" to="Area2D" method="_on_timer_timeout"]
