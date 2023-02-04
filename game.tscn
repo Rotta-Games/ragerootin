@@ -18,6 +18,8 @@ script = ExtResource("1_vsqo3")
 [node name="Player1" parent="." instance=ExtResource("4_a3mtv")]
 position = Vector2(170, 180)
 script = ExtResource("4_52che")
+own_layer = 1
+enemy_layer = 2
 
 [node name="GUI" parent="." instance=ExtResource("6_4oam8")]
 
@@ -26,7 +28,10 @@ position = Vector2(170, 180)
 
 [node name="Player2" parent="." instance=ExtResource("4_a3mtv")]
 position = Vector2(480, 180)
+rotation = 3.14159
 script = ExtResource("7_nc2dq")
+own_layer = 2
+enemy_layer = 1
 
 [node name="GameBackground" parent="." instance=ExtResource("6_24cua")]
 
