@@ -32,4 +32,4 @@ func _on_animated_sprite_2d_animation_finished():
 	$Area2D/Timer.start(seconds)
 
 func _on_timer_timeout():
-	$Aread2D/AnimatedSprite2D.play("default")
+	$Area2D/AnimatedSprite2D.play("default")
