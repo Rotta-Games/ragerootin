@@ -24,7 +24,7 @@ func _process(delta):
 
 func _generate_water():
 	var earthPos = $Earth.position
-	var max_radius = $Earth/CollisionShape2D.shape.radius * 27
+	var max_radius = $Earth/CollisionShape2D.shape.radius
 	var distance_between_rings = max_radius / water_rings;
 	var water_per_rings = water_amount / water_rings
 	

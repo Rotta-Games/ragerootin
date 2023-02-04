@@ -1,99 +1,22 @@
-[gd_scene load_steps=11 format=3 uid="uid://dk1e5r83rraht"]
+[gd_scene load_steps=7 format=3 uid="uid://dk1e5r83rraht"]
 
-[ext_resource type="Texture2D" uid="uid://dv3wqd5ajjukp" path="res://assets/gfx/planet.png" id="1_jqjye"]
 [ext_resource type="Script" path="res://game.gd" id="1_vsqo3"]
-[ext_resource type="Texture2D" uid="uid://bvpssq4vdwi0o" path="res://assets/gfx/tree.png" id="2_3kfm1"]
 [ext_resource type="PackedScene" path="res://water.tscn" id="2_skadb"]
-[ext_resource type="Script" path="res://Player1.gd" id="3_5isx4"]
-[ext_resource type="Texture2D" uid="uid://b8p2ufu1kj703" path="res://assets/gfx/tree2.png" id="3_py1ko"]
-[ext_resource type="PackedScene" uid="uid://dqskg4p7ccpna" path="res://root.tscn" id="4_l441w"]
-[ext_resource type="Texture2D" uid="uid://cimq45oa25nn0" path="res://assets/gfx/slider.png" id="5_8n0al"]
-[ext_resource type="Texture2D" uid="uid://ccpyop0wuix1p" path="res://assets/gfx/slider-button.png" id="6_d3e1o"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_njt6a"]
+[ext_resource type="PackedScene" uid="uid://cqcyu1fsua041" path="res://planet.tscn" id="3_hd06s"]
+[ext_resource type="PackedScene" uid="uid://7m0oglb5jiq0" path="res://player.tscn" id="4_a3mtv"]
+[ext_resource type="PackedScene" uid="uid://hj77gi1ae7yc" path="res://gui.tscn" id="6_4oam8"]
+[ext_resource type="PackedScene" uid="uid://hinchqtp386n" path="res://slider.tscn" id="6_qadn6"]
 
 [node name="game" type="Node2D"]
 script = ExtResource("1_vsqo3")
 water_scene = ExtResource("2_skadb")
 
-[node name="Earth" type="Area2D" parent="."]
-position = Vector2(557, 339)
+[node name="Planet" parent="." instance=ExtResource("3_hd06s")]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Earth"]
-scale = Vector2(32, 32)
-shape = SubResource("CircleShape2D_njt6a")
-debug_color = Color(0, 0.6, 0.701961, 0.419608)
+[node name="Player1" parent="." instance=ExtResource("4_a3mtv")]
 
-[node name="Sprite2d" type="Sprite2D" parent="Earth"]
-position = Vector2(2.08165e-12, 2.08165e-12)
-scale = Vector2(1.8, 1.8)
-texture = ExtResource("1_jqjye")
+[node name="GUI" parent="." instance=ExtResource("6_4oam8")]
 
-[node name="Tree1" type="Sprite2D" parent="."]
-position = Vector2(182, 335)
-rotation = 4.71239
-texture = ExtResource("2_3kfm1")
+[node name="m" parent="." instance=ExtResource("6_qadn6")]
 
-[node name="Tree2" type="Sprite2D" parent="."]
-position = Vector2(930, 335)
-rotation = 1.5708
-texture = ExtResource("3_py1ko")
-
-[node name="Player1" type="Sprite2D" parent="."]
-position = Vector2(266, 331)
-script = ExtResource("3_5isx4")
-
-[node name="Root" parent="Player1" instance=ExtResource("4_l441w")]
-
-[node name="GUI" type="CanvasLayer" parent="."]
-visible = false
-
-[node name="Control" type="Control" parent="GUI"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="ColorRect" type="ColorRect" parent="GUI/Control"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(1, 0.0980392, 0.478431, 1)
-
-[node name="CenterContainer" type="CenterContainer" parent="GUI/Control"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="GUI/Control/CenterContainer"]
-layout_mode = 2
-
-[node name="ResumeButton" type="Button" parent="GUI/Control/CenterContainer/VBoxContainer"]
-layout_mode = 2
-text = "Resume Game"
-
-[node name="QuitButton" type="Button" parent="GUI/Control/CenterContainer/VBoxContainer"]
-layout_mode = 2
-text = "Quit Game"
-
-[node name="m" type="Sprite2D" parent="."]
-position = Vector2(266, 335)
-rotation = 4.71239
-texture = ExtResource("5_8n0al")
-
-[node name="Slider-button" type="Sprite2D" parent="m"]
-position = Vector2(2, -2)
-texture = ExtResource("6_d3e1o")
-
-[node name="Player2" type="Sprite2D" parent="."]
-position = Vector2(681, 164)
-
-[node name="Root2" parent="Player2" instance=ExtResource("4_l441w")]
+[node name="Player2" parent="." instance=ExtResource("4_a3mtv")]

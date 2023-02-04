@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://hinchqtp386n"]
+
+[ext_resource type="Texture2D" uid="uid://cimq45oa25nn0" path="res://assets/gfx/slider.png" id="1_dtl6g"]
+[ext_resource type="Texture2D" uid="uid://ccpyop0wuix1p" path="res://assets/gfx/slider-button.png" id="2_63mka"]
+
+[node name="m" type="Sprite2D"]
+position = Vector2(266, 335)
+rotation = 4.71239
+texture = ExtResource("1_dtl6g")
+
+[node name="Slider-button" type="Sprite2D" parent="."]
+position = Vector2(2, -2)
+texture = ExtResource("2_63mka")
