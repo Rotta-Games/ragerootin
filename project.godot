@@ -49,6 +49,11 @@ pause={
 ]
 }
 
+[layer_names]
+
+2d_physics/layer_1="player1"
+2d_physics/layer_2="player2"
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"

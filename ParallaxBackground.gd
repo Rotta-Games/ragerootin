@@ -9,5 +9,5 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	self.offsetLoc = self.offsetLoc - 50 * delta
+	self.offsetLoc = self.offsetLoc - 500 * delta
 	set_scroll_offset(Vector2(self.offsetLoc,0))
