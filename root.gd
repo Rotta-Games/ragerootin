@@ -6,7 +6,7 @@ extends Node2D
 
 @export var speed = 60
 @export var turn_speed = 270
-# 0 = disabled
+# 0 = disabled max length check
 @export var max_length = 0
 
 @export var texture: CompressedTexture2D = null
@@ -14,8 +14,9 @@ var root_scene = preload("res://root.tscn")
 
 signal done_growing
 
-const sub_root_update_delay = 5.0
-const sub_root_spacing = 10
+const sub_root_update_delay = 2.0
+const sub_root_spacing = 4
+const sub_root_max_length = 70
 
 var can_have_sub_roots = false
 var sub_roots = []
@@ -26,7 +27,7 @@ var rem_sub_root_update_delay = sub_root_update_delay
 var DARKEN = Color(0.6, 0.6, 0.6, 1)
 
 var max_segment_length = 5
-var max_segments = int(max_length / float(max_segment_length))
+var max_segments = 0
 
 var growing = true
 var angle = 0
@@ -36,11 +37,13 @@ var head_dir = Vector2(1, 0)
 var own_layers = 0
 var enemy_layers = 0
 
+
 var rng = RandomNumberGenerator.new()
 var initialized = false
 
 func _ready():
 	line.texture = self.texture
+	max_segments = int(max_length / float(max_segment_length))
 	
 func init():
 	self.angle = rng.randi_range(-10, 10)
@@ -70,10 +73,10 @@ func set_layers(own: int, enemy: int):
 func _process(delta):
 	if not initialized:
 		return
-	#if can_have_sub_roots:
-	#	_process_sub_roots(delta)
 	if not growing:
 		return
+	if can_have_sub_roots :
+		_process_sub_roots(delta)
 	if max_length > 0 && line.get_point_count() >= max_segments:
 		stop_growing()
 		return
@@ -90,16 +93,17 @@ func _process_sub_roots(delta):
 
 	
 func _grow_new_sub_roots():
-	while line.points.size() / sub_root_spacing > sub_roots.size():
+	var spacing = sub_root_spacing + rng.randi_range(-2, 2)
+	while ((line.points.size() - spacing) / spacing) > sub_roots.size():
 		var sub_root_count = sub_roots.size()
-		var next_idx = sub_root_count + sub_root_spacing
+		var next_idx = (sub_root_count * spacing) + spacing
 		var sub_root_pos = line.points[next_idx]
 		var angle = line.points[next_idx - 1].angle_to(sub_root_pos)
 		_grow_new_sub_root(sub_root_pos, angle)
 	
 func _grow_new_sub_root(pos : Vector2, parent_angle: float):
-	var left_side_angle = parent_angle - deg_to_rad(rng.randi_range(30, 60))
-	var right_side_angle = parent_angle + deg_to_rad(rng.randi_range(30, 60))
+	var left_side_angle = parent_angle - rad_to_deg(rng.randi_range(15, 50))
+	var right_side_angle = parent_angle + rad_to_deg(rng.randi_range(15, 50))
 	_create_new_sub_root(pos, left_side_angle)
 	_create_new_sub_root(pos, right_side_angle)
 
@@ -109,7 +113,14 @@ func _create_new_sub_root(pos: Vector2, angle: float):
 	sub_root.call_deferred("set_layers", own_layers, enemy_layers)
 	sub_root.call_deferred("init_with_args", pos, angle)
 	sub_root.can_have_sub_roots = false
-	sub_root.max_length = rng.randi_range(20,80) / 2
+	
+	var max_len = sub_root_max_length - min(0, log(sub_roots.size() / 2))
+	
+	sub_root.max_length = max_len + rng.randi_range(20, 40)
+	sub_root.texture = texture
+	sub_root.speed = 3 + rng.randi_range(2, 4)
+	sub_root.head_dir = head_dir
+
 	sub_roots.append(sub_root)
 	
 func add_point(point):
@@ -195,6 +206,9 @@ func stop_growing():
 	if self.growing && line:
 		line.modulate = DARKEN
 		self.growing = false
+		for sub_root in sub_roots:
+			sub_root.growing = false
+			sub_root.line.modulate = DARKEN
 		emit_signal("done_growing")
 
 
