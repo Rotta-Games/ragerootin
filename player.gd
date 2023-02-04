@@ -47,5 +47,7 @@ func new_root():
 	root.connect("done_growing", self.do_setup, CONNECT_ONE_SHOT)
 	call_deferred("add_child", root)
 	root.call_deferred("set_layers", own_layer, enemy_layer)
+	root.call_deferred("init")
+	root.can_have_sub_roots = true
 	# root.set_layers(own_layer, enemy_layer)
 	return root

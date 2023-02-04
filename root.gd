@@ -6,11 +6,22 @@ extends Node2D
 
 @export var speed = 60
 @export var turn_speed = 270
-@export var max_length = 310
+# 0 = disabled
+@export var max_length = 0
 
 @export var texture: CompressedTexture2D = null
+var root_scene = preload("res://root.tscn")
 
 signal done_growing
+
+const sub_root_update_delay = 5.0
+const sub_root_spacing = 10
+
+var can_have_sub_roots = false
+var sub_roots = []
+
+var rem_sub_root_update_delay = sub_root_update_delay
+
 
 var DARKEN = Color(0.6, 0.6, 0.6, 1)
 
@@ -22,16 +33,34 @@ var angle = 0
 var head_pos = Vector2(0, 0)
 var head_dir = Vector2(1, 0)
 
+var own_layers = 0
+var enemy_layers = 0
+
+var rng = RandomNumberGenerator.new()
+var initialized = false
+
 func _ready():
-	var rng = RandomNumberGenerator.new()
+	line.texture = self.texture
+	pass
+	
+func init():
 	self.angle = rng.randi_range(-10, 10)
 	head_pos = self.position
-	line.texture = self.texture
+	_init_first_point()
+	
+func init_with_args(pos: Vector2, angle: float):
+	self.angle = angle
+	self.head_pos = pos
+	_init_first_point()
+	
+func _init_first_point():
 	add_point(head_pos)
 	add_point(head_pos)
-
+	initialized = true
 
 func set_layers(own: int, enemy: int):
+	own_layers = own
+	enemy_layers = enemy
 	body.set_collision_layer_value(own, true)
 	head.set_collision_layer_value(own, true)
 	body.set_collision_mask_value(enemy, true)
@@ -39,16 +68,50 @@ func set_layers(own: int, enemy: int):
 
 
 func _process(delta):
+	if not initialized:
+		return
+	#if can_have_sub_roots:
+	#	_process_sub_roots(delta)
 	if not growing:
 		return
-	# if line.get_point_count() >= max_segments:
-	# 	stop_growing()
-	# 	return
+	if max_length > 0 && line.get_point_count() >= max_segments:
+		stop_growing()
+		return
 	var rotated = head_dir.rotated(angle * delta)
 	head_pos += rotated * speed * delta
 	move_last_point(head_pos)
 
+func _process_sub_roots(delta):
+	rem_sub_root_update_delay -= delta
+	if rem_sub_root_update_delay > 0.0:
+		return
+	rem_sub_root_update_delay = sub_root_update_delay
+	_grow_new_sub_roots()
 
+	
+func _grow_new_sub_roots():
+	while line.points.size() / sub_root_spacing > sub_roots.size():
+		var sub_root_count = sub_roots.size()
+		var next_idx = sub_root_count + sub_root_spacing
+		var sub_root_pos = line.points[next_idx]
+		var angle = line.points[next_idx - 1].angle_to(sub_root_pos)
+		_grow_new_sub_root(sub_root_pos, angle)
+	
+func _grow_new_sub_root(pos : Vector2, parent_angle: float):
+	var left_side_angle = parent_angle - deg_to_rad(rng.randi_range(30, 60))
+	var right_side_angle = parent_angle + deg_to_rad(rng.randi_range(30, 60))
+	_create_new_sub_root(pos, left_side_angle)
+	_create_new_sub_root(pos, right_side_angle)
+
+func _create_new_sub_root(pos: Vector2, angle: float):
+	var sub_root = root_scene.instantiate()
+	call_deferred("add_child", sub_root)
+	sub_root.call_deferred("set_layers", own_layers, enemy_layers)
+	sub_root.call_deferred("init_with_args", pos, angle)
+	sub_root.can_have_sub_roots = false
+	sub_root.max_length = rng.randi_range(20,80) / 2
+	sub_roots.append(sub_root)
+	
 func add_point(point):
 	var last_point = line.points[-1]
 	line.add_point(point)
