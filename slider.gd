@@ -2,7 +2,6 @@ extends Node2D
 
 @export var move_speed = 0.03
 @onready var path = $Path2D
-@onready var path_follow = $"Path2D/PathFollow2D"
 @onready var button = $"SliderButton"
 var patrol_points
 var patrol_index = 0
