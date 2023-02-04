@@ -56,4 +56,5 @@ offset_right = 151.0
 offset_bottom = 36.0
 text = "Quit Game"
 
+[connection signal="pressed" from="Control/VBoxContainer/NewGameButton" to="Control" method="onNewGameButtonPressed"]
 [connection signal="pressed" from="Control/VBoxContainer/QuitGameButton" to="Control" method="onQuitGameButtonPressed"]
