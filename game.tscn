@@ -18,16 +18,20 @@ script = ExtResource("1_vsqo3")
 
 [node name="Planet" parent="." instance=ExtResource("3_hd06s")]
 
+[node name="Player1Slider" parent="." instance=ExtResource("6_qadn6")]
+position = Vector2(157.106, 180)
+rotation = -1.5708
+
+[node name="Player2Slider" parent="." instance=ExtResource("6_qadn6")]
+position = Vector2(480.784, 180)
+rotation = -4.71239
+
 [node name="Player1" parent="." instance=ExtResource("4_a3mtv")]
 position = Vector2(170, 180)
 script = ExtResource("4_52che")
 root_texture = ExtResource("4_pbjsy")
 own_layer = 1
 enemy_layer = 2
-
-[node name="Player1Slider" parent="Player1" instance=ExtResource("6_qadn6")]
-position = Vector2(-12.894, 2.08165e-12)
-rotation = -1.5708
 
 [node name="GUI" parent="." instance=ExtResource("6_4oam8")]
 
@@ -40,7 +44,7 @@ own_layer = 2
 enemy_layer = 1
 
 [node name="GameBackground" parent="." instance=ExtResource("6_24cua")]
-position = Vector2(-183, -359)
+position = Vector2(-82, -440)
 
 [node name="Lights" parent="." instance=ExtResource("9_6sf3a")]
 

@@ -5,13 +5,18 @@ extends Node2D
 @export var water_amount = 20
 @export var water_rings = 4
 
+@onready var water_container = $WaterContainer
+
+signal planet_dry
+
 func _ready():
 	randomize()
 	_generate_water()
 
 
 func _process(delta):
-	pass
+	if water_container.get_child_count() <= 0:
+		emit_signal("planet_dry")
 
 
 func _generate_water():
@@ -29,5 +34,5 @@ func _generate_water():
 			water_position.y = (sin(angle) * radius) + earthPos.y
 			
 			var water = water_scene.instantiate()
-			add_child(water)
+			water_container.add_child(water)
 			water.set_global_position(water_position)
