@@ -23,7 +23,7 @@ func _process(delta):
 		var areas = root.body.get_overlapping_areas()
 		for area in areas:
 			if area.get_collision_layer_value(WATER_LAYER_MASK):
-				self.score += 1 + delta
+				self.score += 1 * delta
 
 
 func _ready():
@@ -36,11 +36,15 @@ func shoot():
 func set_angle(angle):
 	root.angle = angle
 
+func do_setup():
+	state = SETUP
+	root = null
+
 
 func new_root():
 	root = root_scene.instantiate()
 	root.texture = root_texture
-	root.connect("done_growing", self.new_root)
+	root.connect("done_growing", self.do_setup, CONNECT_ONE_SHOT)
 	call_deferred("add_child", root)
 	root.call_deferred("set_layers", own_layer, enemy_layer)
 	root.call_deferred("init")
