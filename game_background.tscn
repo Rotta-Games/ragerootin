@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://dvpenw227nbta"]
+
+[ext_resource type="Script" path="res://ParallaxBackground.gd" id="1_b3aro"]
+[ext_resource type="Texture2D" uid="uid://bfadg58kyknqs" path="res://assets/gfx/bg.png" id="1_runqh"]
+
+[node name="GameBackground" type="Node2D"]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+script = ExtResource("1_b3aro")
+
+[node name="BackgroundSprite" type="Sprite2D" parent="ParallaxBackground"]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+
+[node name="UndecidedParallaxSprite" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2(1244, 530)
+scale = Vector2(3.88125, 2.95)
+texture = ExtResource("1_runqh")
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
+
+[node name="AnotherUndecidedParallaxSprite" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2"]
