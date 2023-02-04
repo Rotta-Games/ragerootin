@@ -9,6 +9,8 @@ extends Node2D
 @export var turn_speed = 270
 @export var max_length = 320
 
+signal done_growing
+
 var max_segment_length = 5
 var max_segments = int(max_length / float(max_segment_length))
 
@@ -124,3 +126,5 @@ func _on_body_area_shape_entered(_area_rid:RID, area:Area2D, _area_shape_index:i
 
 		handle_dead_split(local_shape_index)
 		handle_alive_split(local_shape_index)
+
+		emit_signal("done_growing")
