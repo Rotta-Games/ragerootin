@@ -1,11 +1,13 @@
-[gd_scene load_steps=7 format=3 uid="uid://cnqjxco0jwax3"]
+[gd_scene load_steps=9 format=3 uid="uid://cnqjxco0jwax3"]
 
 [ext_resource type="Script" path="res://game.gd" id="1_vsqo3"]
-[ext_resource type="PackedScene" path="res://planet.tscn" id="3_hd06s"]
-[ext_resource type="PackedScene" path="res://player.tscn" id="4_a3mtv"]
+[ext_resource type="PackedScene" uid="uid://cqcyu1fsua041" path="res://planet.tscn" id="3_hd06s"]
+[ext_resource type="Script" path="res://player1.gd" id="4_52che"]
+[ext_resource type="PackedScene" uid="uid://dxy40xvhva1b1" path="res://player.tscn" id="4_a3mtv"]
 [ext_resource type="PackedScene" path="res://gui.tscn" id="6_4oam8"]
-[ext_resource type="PackedScene" uid="uid://dvpenw227nbta" path="res://game_background.tscn" id="6_24cua"]
+[ext_resource type="PackedScene" path="res://game_background.tscn" id="6_24cua"]
 [ext_resource type="PackedScene" path="res://slider.tscn" id="6_qadn6"]
+[ext_resource type="Script" path="res://player2.gd" id="7_nc2dq"]
 
 [node name="game" type="Node2D"]
 script = ExtResource("1_vsqo3")
@@ -13,6 +15,7 @@ script = ExtResource("1_vsqo3")
 [node name="Planet" parent="." instance=ExtResource("3_hd06s")]
 
 [node name="Player1" parent="." instance=ExtResource("4_a3mtv")]
+script = ExtResource("4_52che")
 
 [node name="GUI" parent="." instance=ExtResource("6_4oam8")]
 
@@ -20,5 +23,6 @@ script = ExtResource("1_vsqo3")
 
 [node name="Player2" parent="." instance=ExtResource("4_a3mtv")]
 position = Vector2(673, 190)
+script = ExtResource("7_nc2dq")
 
 [node name="GameBackground" parent="." instance=ExtResource("6_24cua")]
