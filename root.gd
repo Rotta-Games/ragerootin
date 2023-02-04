@@ -60,7 +60,7 @@ func add_point(point):
 	shape.rotation = last_point.direction_to(point).angle()
 
 	var length = last_point.distance_to(point)
-	rect.extents = Vector2(length / 2, 5)
+	rect.extents = Vector2(length / 2, line.width / 2)
 
 	shape.shape = rect
 	body.add_child(shape)
@@ -78,7 +78,7 @@ func move_last_point(point: Vector2):
 	shape.rotation = second_last.direction_to(point).angle()
 
 	var length = second_last.distance_to(point)
-	rect.extents = Vector2(length / 2, 5)
+	rect.extents = Vector2(length / 2, line.width / 2)
 
 	if length >= max_segment_length:
 		add_point(point)
