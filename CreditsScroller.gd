@@ -12,3 +12,7 @@ func _ready():
 func _process(delta):
 	self.creditsTextState = self.creditsTextState - self.creditsTextScrollSpeed * delta
 	set_scroll_offset(Vector2(0,self.creditsTextState))
+
+func _input(event):
+	if event.is_pressed() or event.is_action("ui_accept"):
+		get_tree().change_scene_to_file("res://main.tscn")
