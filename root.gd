@@ -13,11 +13,13 @@ var max_segment_length = 5
 var max_segments = int(max_length / float(max_segment_length))
 
 var growing = true
-var angle = 10
+var angle = 0
 var head_pos = Vector2(0, 0)
 var head_dir = Vector2(1, 0)
 
 func _ready():
+	var rng = RandomNumberGenerator.new()
+	self.angle = rng.randi_range(-10, 10)
 	head_pos = self.position
 	add_point(head_pos)
 	add_point(head_pos)
