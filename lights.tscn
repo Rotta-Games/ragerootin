@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://cwfuhqg168png"]
+
+[ext_resource type="PackedScene" uid="uid://botvk53x6ywyg" path="res://sun.tscn" id="1_fwrgd"]
+
+[node name="Lights" type="Node2D"]
+
+[node name="Sun" parent="." instance=ExtResource("1_fwrgd")]
+position = Vector2(554, -75)
+scale = Vector2(3, 2.261)
+speed = 0.2
+
+[node name="DarkSun" parent="." instance=ExtResource("1_fwrgd")]
+scale = Vector2(3, 2.261)
+energy = 2.0
+blend_mode = 1
+angle = 80
+speed = 0.2

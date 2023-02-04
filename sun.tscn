@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://botvk53x6ywyg"]
+
+[ext_resource type="Texture2D" uid="uid://8mr7pl1snam6" path="res://assets/gfx/light.png" id="1_685dj"]
+[ext_resource type="Script" path="res://Sun.gd" id="2_sfyfl"]
+
+[node name="Sun" type="PointLight2D"]
+position = Vector2(555.515, -37.6667)
+scale = Vector2(2.21212, 1.66667)
+energy = 1.72
+texture = ExtResource("1_685dj")
+script = ExtResource("2_sfyfl")
