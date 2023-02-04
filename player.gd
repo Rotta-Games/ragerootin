@@ -10,11 +10,11 @@ func set_layers(own: int, enemy: int):
 
 
 func _input(event):
-	if event is InputEventKey:
-		if event.keycode == KEY_LEFT:
-			root.angle += -root.turn_speed
-		if event.keycode == KEY_RIGHT:
-			root.angle += root.turn_speed
+	if Input.is_action_pressed("player1_move_left"):
+		root.angle += -root.turn_speed
+	if Input.is_action_pressed("player1_move_right"):
+		root.angle += root.turn_speed
+
 	# if event is InputEventMouseButton:
 	# 	if event.button_index == 1 and event.is_pressed():
 	# 		add_point(line1, event.position)

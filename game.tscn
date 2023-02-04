@@ -1,10 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://dk1e5r83rraht"]
+[gd_scene load_steps=6 format=3 uid="uid://cnqjxco0jwax3"]
 
 [ext_resource type="Script" path="res://game.gd" id="1_vsqo3"]
-[ext_resource type="PackedScene" uid="uid://cqcyu1fsua041" path="res://planet.tscn" id="3_hd06s"]
-[ext_resource type="PackedScene" uid="uid://7m0oglb5jiq0" path="res://player.tscn" id="4_a3mtv"]
-[ext_resource type="PackedScene" uid="uid://hj77gi1ae7yc" path="res://gui.tscn" id="6_4oam8"]
-[ext_resource type="PackedScene" uid="uid://hinchqtp386n" path="res://slider.tscn" id="6_qadn6"]
+[ext_resource type="PackedScene" path="res://planet.tscn" id="3_hd06s"]
+[ext_resource type="PackedScene" uid="uid://dxy40xvhva1b1" path="res://player.tscn" id="4_a3mtv"]
+[ext_resource type="PackedScene" path="res://gui.tscn" id="6_4oam8"]
+[ext_resource type="PackedScene" path="res://slider.tscn" id="6_qadn6"]
 
 [node name="game" type="Node2D"]
 script = ExtResource("1_vsqo3")
