@@ -26,6 +26,10 @@ func _process(delta):
 
 
 func _ready():
+	pass
+	
+func shoot():
+	state = MOVING
 	root = new_root()
 
 func set_angle(angle):
