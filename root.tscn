@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://s73vtbyq2umt"]
+[gd_scene load_steps=6 format=3 uid="uid://dqskg4p7ccpna"]
 
 [ext_resource type="Script" path="res://root.gd" id="1_7sxx2"]
 [ext_resource type="Texture2D" uid="uid://bv7o8ooxybefg" path="res://assets/gfx/root.png" id="2_uevxx"]
@@ -9,6 +9,12 @@ point_count = 2
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wwsei"]
 radius = 5.0
+
+[sub_resource type="GDScript" id="GDScript_v0e8w"]
+script/source = "extends CollisionShape2D
+
+@export var is_root_head = true
+"
 
 [node name="Root" type="Node2D"]
 script = ExtResource("1_7sxx2")
@@ -22,14 +28,22 @@ texture_mode = 1
 joint_mode = 1
 
 [node name="BodyArea" type="Area2D" parent="Line2D"]
+collision_layer = 0
+collision_mask = 0
+input_pickable = false
 
 [node name="HeadArea" type="Area2D" parent="Line2D"]
+collision_layer = 0
+collision_mask = 0
+input_pickable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Line2D/HeadArea"]
 shape = SubResource("CircleShape2D_wwsei")
+script = SubResource("GDScript_v0e8w")
 
 [node name="SegmentTimer" type="Timer" parent="."]
 wait_time = 0.1
 autostart = true
 
+[connection signal="area_shape_entered" from="Line2D/BodyArea" to="." method="_on_body_area_shape_entered"]
 [connection signal="timeout" from="SegmentTimer" to="." method="_on_segment_timer_timeout"]

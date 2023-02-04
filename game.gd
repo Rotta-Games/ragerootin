@@ -5,11 +5,17 @@ extends Node2D
 @export var water_amount = 20
 @export var water_rings = 4
 
+@onready var root1 = $Player1/Root
+@onready var root2 = $Player2/Root2
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	randomize()
 	_generate_water()
-	
+
+	root2.angle = 90
+	root1.set_layers(1, 2)
+	root2.set_layers(2, 1)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

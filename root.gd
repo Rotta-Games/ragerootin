@@ -3,10 +3,11 @@ extends Node2D
 @onready var line = $Line2D
 @onready var body = $Line2D/BodyArea
 @onready var head = $Line2D/HeadArea
+@onready var timer = $SegmentTimer
 
 var alive = true
 var angle = 10
-var speed = 100
+var speed = 200
 var turn_speed = 10
 var head_pos = Vector2(0, 0)
 var head_dir = Vector2(1, 0)
@@ -15,6 +16,13 @@ func _ready():
 	head_pos = self.position
 	add_point(head_pos)
 	add_point(head_pos)
+
+
+func set_layers(own: int, enemy: int):
+	body.set_collision_layer_value(own, true)
+	head.set_collision_layer_value(own, true)
+	body.set_collision_mask_value(enemy, true)
+	head.set_collision_mask_value(enemy, true)
 
 
 func _process(delta):
@@ -59,3 +67,16 @@ func move_last_point(point: Vector2):
 
 func _on_segment_timer_timeout():
 	add_point(head_pos)
+
+
+func _on_body_area_shape_entered(area_rid:RID, area:Area2D, area_shape_index:int, local_shape_index:int):
+	if area.name == "HeadArea":
+		timer.stop()
+		while line.points.size() > local_shape_index + 1:
+			line.remove_point(line.points.size()-1)
+			body.remove_child(body.get_child(-1))
+			if line.has_node("HeadArea"):
+				head.queue_free()
+		self.alive = false
+		line.width_curve = null
+
