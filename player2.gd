@@ -17,5 +17,5 @@ func _physics_process(delta):
 
 func _input(event):
 	if state == SETUP && Input.is_action_pressed("player2_shoot"):
-		self.set_global_position(sliderButton.get_global_position())
+		self.set_start_position(sliderButton.get_global_position())
 		shoot()
