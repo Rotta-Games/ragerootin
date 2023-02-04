@@ -1,12 +1,7 @@
 extends "res://player.gd"
 
-var slider
-var sliderButton
-
-func _ready():
-	slider = $"../Player1Slider"
-	sliderButton = $"../Player1Slider/SliderButton"
-	print(sliderButton)
+@onready var slider = $"../Player1Slider"
+@onready var sliderButton =  $"../Player1Slider/SliderButton"
 	
 func _physics_process(delta):
 	if Input.is_action_pressed("player1_move_left"):
