@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://d0v055pdymdup"]
+[gd_scene load_steps=8 format=3 uid="uid://d0v055pdymdup"]
 
 [ext_resource type="Texture2D" uid="uid://dv3wqd5ajjukp" path="res://assets/gfx/planet.png" id="1_jqjye"]
 [ext_resource type="Texture2D" uid="uid://bvpssq4vdwi0o" path="res://assets/gfx/tree.png" id="2_3kfm1"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://b8p2ufu1kj703" path="res://assets/gfx/tree2.png" id="3_py1ko"]
 [ext_resource type="Texture2D" uid="uid://cimq45oa25nn0" path="res://assets/gfx/slider.png" id="5_8n0al"]
 [ext_resource type="Texture2D" uid="uid://ccpyop0wuix1p" path="res://assets/gfx/slider-button.png" id="6_d3e1o"]
+[ext_resource type="PackedScene" uid="uid://dqskg4p7ccpna" path="res://root.tscn" id="4_l441w"]
 
 [node name="game" type="Node2D"]
 
@@ -34,13 +35,7 @@ points = PackedVector2Array(805, 163)
 position = Vector2(258, 338)
 script = ExtResource("3_5isx4")
 
-[node name="Line1" type="Line2D" parent="Player1"]
-points = PackedVector2Array(4, 2)
-
-[node name="Area" type="Area2D" parent="Player1/Line1"]
-
-[node name="RootTimer" type="Timer" parent="Player1"]
-wait_time = 0.171
+[node name="Root" parent="Player1" instance=ExtResource("4_l441w")]
 
 [node name="GUI" type="CanvasLayer" parent="."]
 visible = false
@@ -89,5 +84,3 @@ texture = ExtResource("5_8n0al")
 [node name="Slider-button" type="Sprite2D" parent="m"]
 position = Vector2(2, -2)
 texture = ExtResource("6_d3e1o")
-
-[connection signal="timeout" from="Player1/RootTimer" to="Player1" method="_on_root_timer_timeout"]
