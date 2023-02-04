@@ -3,13 +3,14 @@ extends Node2D
 @onready var line = $Line2D
 @onready var body = $Line2D/BodyArea
 @onready var head = $Line2D/HeadArea
-@onready var timer = $SegmentTimer
 
 @export var speed = 80
 @export var turn_speed = 270
-@export var max_length = 320
+@export var max_length = 310
 
 signal done_growing
+
+var DARKEN = Color(0.6, 0.6, 0.6, 1)
 
 var max_segment_length = 5
 var max_segments = int(max_length / float(max_segment_length))
@@ -35,9 +36,10 @@ func set_layers(own: int, enemy: int):
 
 
 func _process(delta):
-	if line.get_point_count() >= max_segments:
-		self.growing = false
 	if not growing:
+		return
+	if line.get_point_count() >= max_segments:
+		stop_growing()
 		return
 	var rotated = head_dir.rotated(angle * delta)
 	head_pos += rotated * speed * delta
@@ -79,16 +81,12 @@ func move_last_point(point: Vector2):
 		add_point(point)
 
 
-func _on_segment_timer_timeout():
-	pass
-	# add_point(head_pos)
-
-
 func handle_dead_split(cut_index: int):
 	# split the line in two
 	var dead_line = line.duplicate()
 	call_deferred("add_child", dead_line)
 
+	dead_line.modulate = DARKEN
 	dead_line.width_curve = null
 
 	# remove dead split's collision stuff
@@ -121,10 +119,14 @@ func handle_alive_split(cut_index: int):
 
 func _on_body_area_shape_entered(_area_rid:RID, area:Area2D, _area_shape_index:int, local_shape_index:int):
 	if area.name == "HeadArea":
-		timer.stop()
-		self.growing = false
 
 		handle_dead_split(local_shape_index)
 		handle_alive_split(local_shape_index)
 
+		stop_growing()
+
+func stop_growing():
+	if self.growing:
+		line.modulate = DARKEN
+		self.growing = false
 		emit_signal("done_growing")

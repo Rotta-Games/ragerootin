@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bv7o8ooxybefg" path="res://assets/gfx/root.png" id="2_uevxx"]
 
 [sub_resource type="Curve" id="Curve_4ewgy"]
-_data = [Vector2(0.139175, 0.918182), 0.0, 0.0, 0, 0, Vector2(1, 0.154545), 0.0, 0.0, 0, 0]
+_data = [Vector2(0.139175, 0.918182), 0.0, 0.0, 0, 0, Vector2(1, 0.472727), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wwsei"]
@@ -42,9 +42,4 @@ input_pickable = false
 shape = SubResource("CircleShape2D_wwsei")
 script = SubResource("GDScript_v0e8w")
 
-[node name="SegmentTimer" type="Timer" parent="."]
-wait_time = 0.1
-autostart = true
-
 [connection signal="area_shape_entered" from="Line2D/BodyArea" to="." method="_on_body_area_shape_entered"]
-[connection signal="timeout" from="SegmentTimer" to="." method="_on_segment_timer_timeout"]

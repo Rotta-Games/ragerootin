@@ -36,7 +36,8 @@ layout_mode = 0
 offset_left = 54.0
 offset_top = 3.0
 offset_right = 144.0
-offset_bottom = 43.0
+offset_bottom = 26.0
+mouse_filter = 1
 text = "New Game"
 
 [node name="CreditsButton" type="TextureButton" parent="Control/VBoxContainer"]
@@ -48,7 +49,8 @@ layout_mode = 2
 offset_left = 66.0
 offset_top = 3.0
 offset_right = 122.0
-offset_bottom = 33.0
+offset_bottom = 28.0
+mouse_filter = 1
 text = "Credits"
 
 [node name="QuitGameButton" type="TextureButton" parent="Control/VBoxContainer"]
@@ -60,7 +62,8 @@ layout_mode = 2
 offset_left = 53.0
 offset_top = 3.0
 offset_right = 151.0
-offset_bottom = 36.0
+offset_bottom = 28.0
+mouse_filter = 1
 text = "Quit Game"
 
 [node name="Logo" type="Sprite2D" parent="Control/VBoxContainer"]
