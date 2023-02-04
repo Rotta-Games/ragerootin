@@ -32,6 +32,9 @@ func _ready():
 	pass
 	
 func shoot():
+	if root:
+		root.stop_growing()
+		return
 	state = MOVING
 	root = new_root()
 

@@ -16,6 +16,6 @@ func _physics_process(delta):
 			root.angle += root.turn_speed * delta
 
 func _input(event):
-	if state == SETUP && Input.is_action_pressed("player2_shoot"):
+	if Input.is_action_pressed("player2_shoot"):
 		self.set_start_position(sliderButton.get_global_position())
 		shoot()
