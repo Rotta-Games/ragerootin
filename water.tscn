@@ -1,11 +1,19 @@
-[gd_scene load_steps=2 format=3 uid="uid://luujl0gtps7k"]
+[gd_scene load_steps=3 format=3 uid="uid://7c5hvc25dmio"]
 
 [ext_resource type="Texture2D" uid="uid://nmm7bd6urxd5" path="res://assets/gfx/water.png" id="1_yv4ek"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2unld"]
+radius = 12.0416
 
 [node name="Node2D" type="Node2D"]
 
 [node name="Water" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 3
 
 [node name="Sprite2D" type="Sprite2D" parent="Water"]
 position = Vector2(2.08165e-12, 2.08165e-12)
 texture = ExtResource("1_yv4ek")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Water"]
+shape = SubResource("CircleShape2D_2unld")

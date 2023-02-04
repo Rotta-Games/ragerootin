@@ -4,9 +4,11 @@ extends Node2D
 @onready var body = $Line2D/BodyArea
 @onready var head = $Line2D/HeadArea
 
-@export var speed = 80
+@export var speed = 60
 @export var turn_speed = 270
 @export var max_length = 310
+
+@export var texture: CompressedTexture2D = null
 
 signal done_growing
 
@@ -24,6 +26,7 @@ func _ready():
 	var rng = RandomNumberGenerator.new()
 	self.angle = rng.randi_range(-10, 10)
 	head_pos = self.position
+	line.texture = self.texture
 	add_point(head_pos)
 	add_point(head_pos)
 
@@ -38,9 +41,9 @@ func set_layers(own: int, enemy: int):
 func _process(delta):
 	if not growing:
 		return
-	if line.get_point_count() >= max_segments:
-		stop_growing()
-		return
+	# if line.get_point_count() >= max_segments:
+	# 	stop_growing()
+	# 	return
 	var rotated = head_dir.rotated(angle * delta)
 	head_pos += rotated * speed * delta
 	move_last_point(head_pos)
