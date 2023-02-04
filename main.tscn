@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://eyff36cp2io3"]
+[gd_scene load_steps=4 format=3 uid="uid://eyff36cp2io3"]
 
 [ext_resource type="Script" path="res://MainMenuControl.gd" id="1_tr6f7"]
 [ext_resource type="Texture2D" uid="uid://b1ijgi4fbgnm5" path="res://assets/gfx/menu_button.png" id="2_bktn5"]
+[ext_resource type="AudioStream" uid="uid://cfrjvsjd5bjn0" path="res://assets/music/roots_pelimusa.mp3" id="3_gm3fx"]
 
 [node name="Node2D" type="Node2D"]
 
@@ -55,6 +56,10 @@ offset_top = 3.0
 offset_right = 151.0
 offset_bottom = 36.0
 text = "Quit Game"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_gm3fx")
+autoplay = true
 
 [connection signal="pressed" from="Control/VBoxContainer/NewGameButton" to="Control" method="onNewGameButtonPressed"]
 [connection signal="pressed" from="Control/VBoxContainer/QuitGameButton" to="Control" method="onQuitGameButtonPressed"]

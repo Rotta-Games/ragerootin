@@ -5,7 +5,7 @@ extends Control
 var is_paused = false : set = set_is_paused
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	set_process_input(true) 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
