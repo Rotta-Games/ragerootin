@@ -7,7 +7,7 @@ extends Node2D
 @export var speed = 200
 @export var turn_speed = 10
 
-var alive = true
+var growing = true
 var angle = 10
 var head_pos = Vector2(0, 0)
 var head_dir = Vector2(1, 0)
@@ -26,7 +26,7 @@ func set_layers(own: int, enemy: int):
 
 
 func _process(delta):
-	if not alive:
+	if not growing:
 		return
 	var rotated = head_dir.rotated(angle * delta)
 	head_pos += rotated * speed * delta
@@ -88,10 +88,11 @@ func handle_dead_split(cut_index: int):
 	var tween = create_tween()
 	tween.tween_property(dead_line, "modulate", Color(1, 1, 1, 0), 2.0)
 	tween.tween_callback(dead_line.queue_free)
+	tween.tween_callback(tween.kill)
 
 
 func handle_alive_split(cut_index: int):
-	# remove alive split's points from cut to end
+	# remove growing split's points from cut to end
 	while line.points.size() > cut_index + 1:
 		line.remove_point(line.points.size()-1)
 		body.remove_child(body.get_child(-1))
@@ -106,7 +107,7 @@ func handle_alive_split(cut_index: int):
 func _on_body_area_shape_entered(_area_rid:RID, area:Area2D, _area_shape_index:int, local_shape_index:int):
 	if area.name == "HeadArea":
 		timer.stop()
-		self.alive = false
+		self.growing = false
 
 		handle_dead_split(local_shape_index)
 		handle_alive_split(local_shape_index)
