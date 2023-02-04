@@ -3,7 +3,6 @@ extends Node2D
 @onready var line = $Line2D
 @onready var body = $Line2D/BodyArea
 @onready var head = $Line2D/HeadArea
-@onready var timer = $SegmentTimer
 
 @export var speed = 80
 @export var turn_speed = 270
@@ -36,7 +35,9 @@ func set_layers(own: int, enemy: int):
 
 func _process(delta):
 	if line.get_point_count() >= max_segments:
-		self.growing = false
+		if self.growing:
+			self.growing = false
+			emit_signal("done_growing")
 	if not growing:
 		return
 	var rotated = head_dir.rotated(angle * delta)
@@ -79,11 +80,6 @@ func move_last_point(point: Vector2):
 		add_point(point)
 
 
-func _on_segment_timer_timeout():
-	pass
-	# add_point(head_pos)
-
-
 func handle_dead_split(cut_index: int):
 	# split the line in two
 	var dead_line = line.duplicate()
@@ -121,10 +117,10 @@ func handle_alive_split(cut_index: int):
 
 func _on_body_area_shape_entered(_area_rid:RID, area:Area2D, _area_shape_index:int, local_shape_index:int):
 	if area.name == "HeadArea":
-		timer.stop()
-		self.growing = false
 
 		handle_dead_split(local_shape_index)
 		handle_alive_split(local_shape_index)
 
-		emit_signal("done_growing")
+		if self.growing:
+			self.growing = false
+			emit_signal("done_growing")
