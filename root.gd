@@ -192,7 +192,7 @@ func _on_body_area_shape_entered(_area_rid:RID, area:Area2D, _area_shape_index:i
 		stop_growing()
 
 func stop_growing():
-	if self.growing:
+	if self.growing && line:
 		line.modulate = DARKEN
 		self.growing = false
 		emit_signal("done_growing")
