@@ -7,6 +7,9 @@
 _data = [Vector2(0.139175, 0.918182), 0.0, 0.0, 0, 0, Vector2(1, 0.154545), 0.0, 0.0, 0, 0]
 point_count = 2
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_wwsei"]
+radius = 5.0
+
 [node name="Root" type="Node2D"]
 script = ExtResource("1_7sxx2")
 
@@ -18,7 +21,12 @@ texture = ExtResource("2_uevxx")
 texture_mode = 1
 joint_mode = 1
 
-[node name="Area2D" type="Area2D" parent="Line2D"]
+[node name="BodyArea" type="Area2D" parent="Line2D"]
+
+[node name="HeadArea" type="Area2D" parent="Line2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Line2D/HeadArea"]
+shape = SubResource("CircleShape2D_wwsei")
 
 [node name="SegmentTimer" type="Timer" parent="."]
 wait_time = 0.1
