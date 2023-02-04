@@ -13,7 +13,6 @@ point_count = 9
 [sub_resource type="CircleShape2D" id="CircleShape2D_7l10d"]
 
 [node name="Slider" type="Node2D"]
-position = Vector2(266, 335)
 rotation = 4.71239
 script = ExtResource("2_3tk8u")
 
@@ -24,13 +23,10 @@ curve = SubResource("Curve2D_hygas")
 texture = ExtResource("1_dtl6g")
 
 [node name="SliderButton" type="CharacterBody2D" parent="."]
-position = Vector2(-3.05176e-05, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SliderButton"]
-position = Vector2(2, -2)
 scale = Vector2(0.5, 0.5)
 shape = SubResource("CircleShape2D_7l10d")
 
 [node name="Slider-button" type="Sprite2D" parent="SliderButton"]
-position = Vector2(2, -2)
 texture = ExtResource("2_63mka")

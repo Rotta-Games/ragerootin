@@ -41,11 +41,11 @@ var initialized = false
 
 func _ready():
 	line.texture = self.texture
-	pass
 	
 func init():
 	self.angle = rng.randi_range(-10, 10)
-	head_pos = self.position
+	if head_pos.is_zero_approx():
+		head_pos = self.position
 	_init_first_point()
 	
 func init_with_args(pos: Vector2, angle: float):
@@ -54,7 +54,7 @@ func init_with_args(pos: Vector2, angle: float):
 	_init_first_point()
 	
 func _init_first_point():
-	add_point(head_pos)
+	line.add_point(head_pos)
 	add_point(head_pos)
 	initialized = true
 
