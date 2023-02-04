@@ -133,3 +133,7 @@ func stop_growing():
 		line.modulate = DARKEN
 		self.growing = false
 		emit_signal("done_growing")
+
+
+func _on_visible_on_screen_notifier_2d_screen_exited():
+	stop_growing()
