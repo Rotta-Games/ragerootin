@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://hau1b5rh4lky"]
+
+[ext_resource type="Script" path="res://music_player.gd" id="1_47m23"]
+[ext_resource type="AudioStream" uid="uid://cfrjvsjd5bjn0" path="res://assets/music/roots_pelimusa.mp3" id="2_x87gx"]
+[ext_resource type="AudioStream" uid="uid://dsplfw4r6yw5c" path="res://assets/music/roots_pelimusa.ogg" id="3_1usb4"]
+[ext_resource type="AudioStream" uid="uid://cakcdyg88v66w" path="res://assets/music/roots_intro.ogg" id="4_n8pf3"]
+
+[node name="Node" type="Node"]
+script = ExtResource("1_47m23")
+loop_stream = ExtResource("2_x87gx")
+
+[node name="AudioStreamPlayerLoop" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_1usb4")
+
+[node name="AudioStreamPlayerIntro" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_n8pf3")
+autoplay = true
+
+[connection signal="finished" from="AudioStreamPlayerIntro" to="." method="_on_audio_stream_player_intro_finished"]
