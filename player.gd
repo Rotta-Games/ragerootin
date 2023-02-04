@@ -13,6 +13,18 @@ enum {END, SETUP, MOVING}
 
 var state = SETUP
 
+var score = 0
+
+var WATER_LAYER_MASK = 3
+
+
+func _process(delta):
+	var areas = root.body.get_overlapping_areas()
+	for area in areas:
+		if area.get_collision_layer_value(WATER_LAYER_MASK):
+			self.score += 1 + delta
+
+
 func _ready():
 	root = new_root()
 
