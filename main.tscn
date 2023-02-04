@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://MainMenuControl.gd" id="1_tr6f7"]
 [ext_resource type="Texture2D" uid="uid://b1ijgi4fbgnm5" path="res://assets/gfx/menu_button.png" id="2_bktn5"]
-[ext_resource type="AudioStream" uid="uid://cd2fy6w0vsgnr" path="res://assets/music/roots_menu.mp3" id="3_8n83v"]
+[ext_resource type="AudioStream" uid="uid://bprgi2ivr3xbt" path="res://assets/music/roots_menu.ogg" id="3_gdb41"]
 
 [node name="Node2D" type="Node2D"]
 
@@ -58,7 +58,7 @@ offset_bottom = 36.0
 text = "Quit Game"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_8n83v")
+stream = ExtResource("3_gdb41")
 autoplay = true
 
 [connection signal="pressed" from="Control/VBoxContainer/NewGameButton" to="Control" method="onNewGameButtonPressed"]
