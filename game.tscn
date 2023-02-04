@@ -4,9 +4,9 @@
 [ext_resource type="Texture2D" uid="uid://bvpssq4vdwi0o" path="res://assets/gfx/tree.png" id="2_3kfm1"]
 [ext_resource type="Script" path="res://Player1.gd" id="3_5isx4"]
 [ext_resource type="Texture2D" uid="uid://b8p2ufu1kj703" path="res://assets/gfx/tree2.png" id="3_py1ko"]
+[ext_resource type="PackedScene" uid="uid://s73vtbyq2umt" path="res://root.tscn" id="4_l441w"]
 [ext_resource type="Texture2D" uid="uid://cimq45oa25nn0" path="res://assets/gfx/slider.png" id="5_8n0al"]
 [ext_resource type="Texture2D" uid="uid://ccpyop0wuix1p" path="res://assets/gfx/slider-button.png" id="6_d3e1o"]
-[ext_resource type="PackedScene" uid="uid://dqskg4p7ccpna" path="res://root.tscn" id="4_l441w"]
 
 [node name="game" type="Node2D"]
 
