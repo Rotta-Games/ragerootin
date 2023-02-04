@@ -4,12 +4,12 @@ extends "res://player.gd"
 @onready var sliderButton =  $"../Player1Slider/SliderButton"
 	
 func _physics_process(delta):
-	if Input.is_action_pressed("player1_move_left"):
+	if Input.is_action_pressed("player1_move_left") || Input.is_action_pressed("player1_move_up"):
 		if state == SETUP:
 			slider.move_left()
 		elif state == MOVING:
 			root.angle += -root.turn_speed * delta
-	if Input.is_action_pressed("player1_move_right"):
+	if Input.is_action_pressed("player1_move_right") || Input.is_action_pressed("player1_move_down"):
 		if state == SETUP:
 			slider.move_right()
 		elif state == MOVING:
