@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://d0v055pdymdup"]
+[gd_scene load_steps=6 format=3 uid="uid://dk1e5r83rraht"]
 
 [ext_resource type="Texture2D" uid="uid://dv3wqd5ajjukp" path="res://assets/gfx/planet.png" id="1_jqjye"]
 [ext_resource type="Texture2D" uid="uid://bvpssq4vdwi0o" path="res://assets/gfx/tree.png" id="2_3kfm1"]
 [ext_resource type="Script" path="res://Player1.gd" id="3_5isx4"]
 [ext_resource type="Texture2D" uid="uid://b8p2ufu1kj703" path="res://assets/gfx/tree2.png" id="3_py1ko"]
+[ext_resource type="PackedScene" uid="uid://dqskg4p7ccpna" path="res://root.tscn" id="4_l441w"]
 
 [node name="game" type="Node2D"]
 
@@ -32,13 +33,7 @@ points = PackedVector2Array(805, 163)
 position = Vector2(258, 338)
 script = ExtResource("3_5isx4")
 
-[node name="Line1" type="Line2D" parent="Player1"]
-points = PackedVector2Array(4, 2)
-
-[node name="Area" type="Area2D" parent="Player1/Line1"]
-
-[node name="RootTimer" type="Timer" parent="Player1"]
-wait_time = 0.171
+[node name="Root" parent="Player1" instance=ExtResource("4_l441w")]
 
 [node name="GUI" type="CanvasLayer" parent="."]
 visible = false
@@ -78,5 +73,3 @@ text = "Resume Game"
 [node name="QuitButton" type="Button" parent="GUI/Control/CenterContainer/VBoxContainer"]
 layout_mode = 2
 text = "Quit Game"
-
-[connection signal="timeout" from="Player1/RootTimer" to="Player1" method="_on_root_timer_timeout"]

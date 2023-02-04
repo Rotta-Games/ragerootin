@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://dqskg4p7ccpna"]
+
+[ext_resource type="Script" path="res://root.gd" id="1_7sxx2"]
+
+[sub_resource type="Curve" id="Curve_4ewgy"]
+_data = [Vector2(0.139175, 0.918182), 0.0, 0.0, 0, 0, Vector2(1, 0.154545), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="Root" type="Node2D"]
+script = ExtResource("1_7sxx2")
+
+[node name="Line2D" type="Line2D" parent="."]
+points = PackedVector2Array(0, 0)
+width_curve = SubResource("Curve_4ewgy")
+
+[node name="Area2D" type="Area2D" parent="Line2D"]
+
+[node name="SegmentTimer" type="Timer" parent="."]
+wait_time = 0.1
+autostart = true
+
+[connection signal="timeout" from="SegmentTimer" to="." method="_on_segment_timer_timeout"]
