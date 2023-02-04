@@ -206,9 +206,10 @@ func stop_growing():
 	if self.growing && line:
 		line.modulate = DARKEN
 		self.growing = false
+		if line.has_node("HeadArea"):
+			head.queue_free()
 		for sub_root in sub_roots:
-			sub_root.growing = false
-			sub_root.line.modulate = DARKEN
+			sub_root.stop_growing()
 		emit_signal("done_growing")
 
 

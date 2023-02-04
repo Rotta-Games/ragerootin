@@ -7,7 +7,7 @@ extends Node2D
 
 const MAX_AMOUNT = 100
 var amount = MAX_AMOUNT
-var drain_speed = 10
+var drain_speed = 5
 
 var rng = RandomNumberGenerator.new()
 
