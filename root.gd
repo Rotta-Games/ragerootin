@@ -70,8 +70,8 @@ func set_layers(own: int, enemy: int):
 func _process(delta):
 	if not initialized:
 		return
-	if can_have_sub_roots:
-		_process_sub_roots(delta)
+	#if can_have_sub_roots:
+	#	_process_sub_roots(delta)
 	if not growing:
 		return
 	if max_length > 0 && line.get_point_count() >= max_segments:
