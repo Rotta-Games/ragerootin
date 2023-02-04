@@ -1,13 +1,30 @@
-[gd_scene load_steps=7 format=3 uid="uid://cqcyu1fsua041"]
+[gd_scene load_steps=13 format=3 uid="uid://cqcyu1fsua041"]
 
 [ext_resource type="Texture2D" uid="uid://dv3wqd5ajjukp" path="res://assets/gfx/planet.png" id="1_kdp3x"]
 [ext_resource type="Script" path="res://planet.gd" id="1_oowm4"]
-[ext_resource type="PackedScene" uid="uid://luujl0gtps7k" path="res://water.tscn" id="2_5887o"]
-[ext_resource type="Texture2D" uid="uid://bvpssq4vdwi0o" path="res://assets/gfx/tree.png" id="2_q8ult"]
-[ext_resource type="Texture2D" uid="uid://b8p2ufu1kj703" path="res://assets/gfx/tree2.png" id="3_dlx4c"]
+[ext_resource type="PackedScene" uid="uid://7c5hvc25dmio" path="res://water.tscn" id="2_5887o"]
+[ext_resource type="Texture2D" uid="uid://ds31bamcflny4" path="res://assets/gfx/tree_trunk.png" id="4_rdp2o"]
+[ext_resource type="Texture2D" uid="uid://dqbg84vrx58b4" path="res://assets/gfx/tree_normal.png" id="5_u8gjv"]
+[ext_resource type="Texture2D" uid="uid://bd0mana7ogxmn" path="res://assets/gfx/tree_leaves.png" id="6_jfrf4"]
+[ext_resource type="Texture2D" uid="uid://dtiwi312wcq7h" path="res://assets/gfx/tree2_trunk.png" id="7_51b4y"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_njt6a"]
 radius = 150.0
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_pgcvk"]
+diffuse_texture = ExtResource("4_rdp2o")
+normal_texture = ExtResource("5_u8gjv")
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_jq1l6"]
+diffuse_texture = ExtResource("6_jfrf4")
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_cqftn"]
+diffuse_texture = ExtResource("7_51b4y")
+normal_texture = ExtResource("5_u8gjv")
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_deohx"]
+diffuse_texture = ExtResource("6_jfrf4")
+normal_texture = ExtResource("5_u8gjv")
 
 [node name="Planet" type="Node2D"]
 script = ExtResource("1_oowm4")
@@ -29,11 +46,17 @@ texture = ExtResource("1_kdp3x")
 [node name="Tree1" type="Sprite2D" parent="."]
 position = Vector2(80, 180)
 rotation = -1.5708
-texture = ExtResource("2_q8ult")
+texture = SubResource("CanvasTexture_pgcvk")
+
+[node name="Leafs" type="Sprite2D" parent="Tree1"]
+texture = SubResource("CanvasTexture_jq1l6")
 
 [node name="Tree2" type="Sprite2D" parent="."]
 position = Vector2(560, 180)
 rotation = 1.5708
-texture = ExtResource("3_dlx4c")
+texture = SubResource("CanvasTexture_cqftn")
+
+[node name="Leafs" type="Sprite2D" parent="Tree2"]
+texture = SubResource("CanvasTexture_deohx")
 
 [node name="WaterContainer" type="Node2D" parent="."]

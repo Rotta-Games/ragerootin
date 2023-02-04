@@ -5,11 +5,11 @@
 [ext_resource type="Script" path="res://player1.gd" id="4_52che"]
 [ext_resource type="PackedScene" uid="uid://dxy40xvhva1b1" path="res://player.tscn" id="4_a3mtv"]
 [ext_resource type="Texture2D" uid="uid://bv7o8ooxybefg" path="res://assets/gfx/root.png" id="4_pbjsy"]
-[ext_resource type="PackedScene" path="res://gui.tscn" id="6_4oam8"]
+[ext_resource type="PackedScene" uid="uid://hj77gi1ae7yc" path="res://gui.tscn" id="6_4oam8"]
 [ext_resource type="PackedScene" uid="uid://dvpenw227nbta" path="res://game_background.tscn" id="6_24cua"]
 [ext_resource type="PackedScene" uid="uid://bixxx2xfvcu2h" path="res://slider.tscn" id="6_qadn6"]
 [ext_resource type="Script" path="res://player2.gd" id="7_nc2dq"]
-[ext_resource type="PackedScene" path="res://lights.tscn" id="9_6sf3a"]
+[ext_resource type="PackedScene" uid="uid://d0oagn0brtevv" path="res://lights.tscn" id="9_6sf3a"]
 [ext_resource type="Texture2D" uid="uid://t5wwaso2n6g3" path="res://assets/gfx/root2.png" id="9_8b883"]
 [ext_resource type="PackedScene" path="res://music_player.tscn" id="10_hsxoa"]
 
