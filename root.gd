@@ -72,11 +72,24 @@ func _on_segment_timer_timeout():
 func _on_body_area_shape_entered(area_rid:RID, area:Area2D, area_shape_index:int, local_shape_index:int):
 	if area.name == "HeadArea":
 		timer.stop()
+
+		var dead_line = line.duplicate()
+		dead_line.width_curve = null
+		for child in dead_line.get_children():
+			child.queue_free()
+
+		for i in range(local_shape_index + 1):
+			dead_line.remove_point(0)
+
+		call_deferred("add_child", dead_line)
+
 		while line.points.size() > local_shape_index + 1:
 			line.remove_point(line.points.size()-1)
 			body.remove_child(body.get_child(-1))
-			if line.has_node("HeadArea"):
-				head.queue_free()
+
+		if line.has_node("HeadArea"):
+			head.queue_free()
+
 		self.alive = false
 		line.width_curve = null
 
