@@ -91,9 +91,29 @@ texture = SubResource("CanvasTexture_cqftn")
 [node name="Leafs" type="Sprite2D" parent="Tree2"]
 texture = SubResource("CanvasTexture_deohx")
 
-[node name="WaterContainer" type="Node2D" parent="."]
+[node name="LeafsParticles" type="CPUParticles2D" parent="Tree2"]
+position = Vector2(2.08165e-12, -15)
+scale = Vector2(120, -96)
+skew = 0.1309
+emitting = false
+amount = 3000
+one_shot = true
+texture = ExtResource("7_lyonl")
+emission_shape = 1
+emission_sphere_radius = 0.8
+gravity = Vector2(-200, 2.08165e-12)
+initial_velocity_min = 0.08
+initial_velocity_max = 0.1
+angular_velocity_min = -550.0
+angular_velocity_max = -550.0
+linear_accel_min = -87.5
+linear_accel_max = -63.89
+radial_accel_min = -37.5
+tangential_accel_min = -1.9
+angle_min = 300.0
+angle_max = 300.0
+angle_curve = SubResource("Curve_y0yrl")
+scale_amount_min = 0.1
+scale_amount_max = 0.3
 
-[node name="Node2D" parent="WaterContainer" instance=ExtResource("2_5887o")]
-position = Vector2(320, 177)
-scale = Vector2(2, 2)
-amount = 300
+[node name="WaterContainer" type="Node2D" parent="."]
