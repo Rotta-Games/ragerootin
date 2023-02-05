@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://cfqqv2nql6ff0"]
+[gd_scene load_steps=5 format=3 uid="uid://cfqqv2nql6ff0"]
 
 [ext_resource type="Texture2D" uid="uid://00mtq4pkkl4i" path="res://assets/gfx/score_screen.png" id="1_2l1ia"]
 [ext_resource type="Script" path="res://game_over.gd" id="1_h2h1d"]
-[ext_resource type="Texture2D" uid="uid://bvpssq4vdwi0o" path="res://assets/gfx/tree.png" id="3_f3e12"]
+[ext_resource type="Texture2D" uid="uid://dtiwi312wcq7h" path="res://assets/gfx/tree2_trunk.png" id="3_5y81g"]
+[ext_resource type="Texture2D" uid="uid://bd0mana7ogxmn" path="res://assets/gfx/tree_leaves.png" id="4_cos0f"]
 
 [node name="game_over" type="Node2D"]
 script = ExtResource("1_h2h1d")
@@ -11,6 +12,11 @@ script = ExtResource("1_h2h1d")
 position = Vector2(318, 180)
 texture = ExtResource("1_2l1ia")
 
-[node name="Tree" type="Sprite2D" parent="."]
-position = Vector2(524, 189)
-texture = ExtResource("3_f3e12")
+[node name="Tree" type="Node2D" parent="."]
+position = Vector2(530, 190)
+
+[node name="Trunk" type="Sprite2D" parent="Tree"]
+texture = ExtResource("3_5y81g")
+
+[node name="Leaves" type="Sprite2D" parent="Tree"]
+texture = ExtResource("4_cos0f")
