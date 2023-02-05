@@ -16,7 +16,8 @@ signal done_growing
 
 const sub_root_update_delay = 2.0
 const sub_root_spacing = 4
-const sub_root_max_length = 70
+# + some rand on top of tihs
+const sub_root_max_length = 50
 
 var can_have_sub_roots = false
 var sub_roots = []
@@ -37,11 +38,16 @@ var head_dir = Vector2(1, 0)
 var own_layers = 0
 var enemy_layers = 0
 
+var index_on_parent = 0
+
 
 var rng = RandomNumberGenerator.new()
 var initialized = false
 
 func _ready():
+	if index_on_parent == 0:
+		# ei toimi, korjaa
+		head.collision_mask = 0
 	line.texture = self.texture
 	max_segments = int(max_length / float(max_segment_length))
 	
@@ -68,9 +74,16 @@ func set_layers(own: int, enemy: int):
 	head.set_collision_layer_value(own, true)
 	body.set_collision_mask_value(enemy, true)
 	head.set_collision_mask_value(enemy, true)
+	
+
+func set_body_layers(own: int, enemy: int):
+	body.set_collision_layer_value(own, true)
+	body.set_collision_mask_value(enemy, true)
 
 
 func _process(delta):
+	if _check_delete():
+		return
 	if not initialized:
 		return
 	if not growing:
@@ -83,6 +96,13 @@ func _process(delta):
 	var rotated = head_dir.rotated(angle * delta)
 	head_pos += rotated * speed * delta
 	move_last_point(head_pos)
+	
+func _check_delete():
+	# Only do this for parents
+	if index_on_parent == 0 && line.points.size() < 2:
+		queue_free()
+		return true
+	return false
 
 func _process_sub_roots(delta):
 	rem_sub_root_update_delay -= delta
@@ -99,24 +119,24 @@ func _grow_new_sub_roots():
 		var next_idx = (sub_root_count * spacing) + spacing
 		var sub_root_pos = line.points[next_idx]
 		var angle = line.points[next_idx - 1].angle_to(sub_root_pos)
-		_grow_new_sub_root(sub_root_pos, angle)
+		_grow_new_sub_root(sub_root_pos, angle, next_idx)
 	
-func _grow_new_sub_root(pos : Vector2, parent_angle: float):
+func _grow_new_sub_root(pos : Vector2, parent_angle: float, index_on_parent: int):
 	var left_side_angle = parent_angle - rad_to_deg(rng.randi_range(15, 50))
 	var right_side_angle = parent_angle + rad_to_deg(rng.randi_range(15, 50))
-	_create_new_sub_root(pos, left_side_angle)
-	_create_new_sub_root(pos, right_side_angle)
+	_create_new_sub_root(pos, left_side_angle, index_on_parent)
+	_create_new_sub_root(pos, right_side_angle, index_on_parent)
 
-func _create_new_sub_root(pos: Vector2, angle: float):
+func _create_new_sub_root(pos: Vector2, angle: float, index_on_parent: int):
 	var sub_root = root_scene.instantiate()
 	call_deferred("add_child", sub_root)
-	sub_root.call_deferred("set_layers", own_layers, enemy_layers)
+	sub_root.call_deferred("set_body_layers", own_layers, enemy_layers)
 	sub_root.call_deferred("init_with_args", pos, angle)
 	sub_root.can_have_sub_roots = false
 	
 	var max_len = sub_root_max_length - min(0, log(sub_roots.size() / 2))
-	
-	sub_root.max_length = max_len + rng.randi_range(20, 40)
+	sub_root.index_on_parent = index_on_parent
+	sub_root.max_length = max_len + rng.randi_range(10, 30)
 	sub_root.texture = texture
 	sub_root.speed = 3 + rng.randi_range(2, 4)
 	sub_root.head_dir = head_dir
@@ -173,13 +193,25 @@ func handle_dead_split(cut_index: int):
 	# remove dead split's points from start to cut
 	for i in range(cut_index + 1):
 		dead_line.remove_point(0)
+	if sub_roots.size() > 0:
+		for i in range(sub_roots.size() - 1, 0, -1):
+			if sub_roots[i].index_on_parent >= cut_index:
+				var sub_root = sub_roots.pop_back()
+				var sub_root_tween = create_tween()
+				sub_root_tween.tween_property(sub_root.line, "modulate", Color(1, 1, 1, 0), 1)
+				sub_root_tween.tween_callback(sub_root.queue_free)
+				sub_root_tween.tween_callback(sub_root_tween.kill)
+				sub_root_tween.set_ease(Tween.EASE_IN)
+
+			else:
+				break
 
 	# tween dead split's alpha
 	var tween = create_tween()
-	tween.tween_property(dead_line, "modulate", Color(1, 1, 1, 0), 2.0)
+	tween.tween_property(dead_line, "modulate", Color(1, 1, 1, 0), 1)
 	tween.tween_callback(dead_line.queue_free)
 	tween.tween_callback(tween.kill)
-
+	tween.set_ease(Tween.EASE_IN)
 
 func handle_alive_split(cut_index: int):
 	# remove growing split's points from cut to end
