@@ -15,7 +15,7 @@ var root_scene = preload("res://root.tscn")
 
 signal done_growing
 
-const sub_root_update_delay = 1.5
+const sub_root_update_delay = 1
 const sub_root_spacing = 4
 # + some rand on top of this
 var sub_root_max_length = 70
@@ -130,7 +130,7 @@ func _grow_new_sub_root(pos : Vector2, parent_angle: float, index_on_parent: int
 	return create_ok && _create_new_sub_root(pos, right_side_angle, index_on_parent)
 
 func _create_new_sub_root(pos: Vector2, angle: float, index_on_parent: int):
-	var max_len = sub_root_max_length - log(sub_roots.size() * 1.5) * 10
+	var max_len = sub_root_max_length - log(sub_roots.size() * 1.5) * 8
 	if max_len < 25:
 		return false
 	var sub_root = root_scene.instantiate()
@@ -144,9 +144,11 @@ func _create_new_sub_root(pos: Vector2, angle: float, index_on_parent: int):
 	else:
 		sub_root.can_have_sub_roots = false
 	sub_root.index_on_parent = index_on_parent
+	sub_root.own_layers = own_layers
+	sub_root.enemy_layers = enemy_layers
 	sub_root.max_length = max_len + rng.randi_range(-5, max(0, sub_root_max_length - index_on_parent))
 	sub_root.texture = texture
-	sub_root.speed = 2 + rng.randi_range(1, 5)
+	sub_root.speed = 5 + rng.randi_range(2, 5)
 	sub_root.head_dir = head_dir
 
 	sub_roots.append(sub_root)
