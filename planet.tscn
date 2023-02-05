@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cqcyu1fsua041"]
+[gd_scene load_steps=15 format=3 uid="uid://cqcyu1fsua041"]
 
 [ext_resource type="Texture2D" uid="uid://dv3wqd5ajjukp" path="res://assets/gfx/planet.png" id="1_kdp3x"]
 [ext_resource type="Script" path="res://planet.gd" id="1_oowm4"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://dqbg84vrx58b4" path="res://assets/gfx/tree_normal.png" id="5_u8gjv"]
 [ext_resource type="Texture2D" uid="uid://bd0mana7ogxmn" path="res://assets/gfx/tree_leaves.png" id="6_jfrf4"]
 [ext_resource type="Texture2D" uid="uid://dtiwi312wcq7h" path="res://assets/gfx/tree2_trunk.png" id="7_51b4y"]
+[ext_resource type="Texture2D" uid="uid://c0nih7civvhay" path="res://assets/gfx/dead_leaf.png" id="7_lyonl"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_njt6a"]
 radius = 150.0
@@ -17,6 +18,12 @@ normal_texture = ExtResource("5_u8gjv")
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_jq1l6"]
 diffuse_texture = ExtResource("6_jfrf4")
+
+[sub_resource type="Curve" id="Curve_y0yrl"]
+min_value = -585.88
+max_value = 1024.0
+_data = [Vector2(0.307765, -296.03), 0.0, 0.0, 0, 0, Vector2(1, 312.476), 0.0, 0.0, 0, 0]
+point_count = 2
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_cqftn"]
 diffuse_texture = ExtResource("7_51b4y")
@@ -50,6 +57,31 @@ texture = SubResource("CanvasTexture_pgcvk")
 
 [node name="Leafs" type="Sprite2D" parent="Tree1"]
 texture = SubResource("CanvasTexture_jq1l6")
+
+[node name="LeafsParticles" type="CPUParticles2D" parent="Tree1"]
+position = Vector2(2.08165e-12, -15)
+scale = Vector2(120, -96)
+skew = 0.1309
+emitting = false
+amount = 3000
+one_shot = true
+texture = ExtResource("7_lyonl")
+emission_shape = 1
+emission_sphere_radius = 0.8
+gravity = Vector2(200, 2.08165e-12)
+initial_velocity_min = 0.08
+initial_velocity_max = 0.1
+angular_velocity_min = -550.0
+angular_velocity_max = -550.0
+linear_accel_min = -87.5
+linear_accel_max = -63.89
+radial_accel_min = -37.5
+tangential_accel_min = -1.9
+angle_min = 300.0
+angle_max = 300.0
+angle_curve = SubResource("Curve_y0yrl")
+scale_amount_min = 0.1
+scale_amount_max = 0.3
 
 [node name="Tree2" type="Sprite2D" parent="."]
 position = Vector2(560, 180)
