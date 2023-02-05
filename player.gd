@@ -17,12 +17,15 @@ var state = SETUP
 
 var WATER_LAYER_MASK = 3
 
-
-func _process(delta):
-	pass
-
 func _ready():
 	pass
+
+func _process(delta):
+	if (root):
+		var areas = root.body.get_overlapping_areas()
+		for area in areas:
+			if area.get_collision_layer_value(WATER_LAYER_MASK):
+				self.score += 1 * delta
 	
 func shoot():
 	if root:
@@ -32,7 +35,7 @@ func shoot():
 	root = new_root()
 
 func set_angle(angle):
-	root.angle = angle
+	root.angle = angle 
 
 func do_setup():
 	state = SETUP
