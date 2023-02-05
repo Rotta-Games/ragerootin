@@ -18,19 +18,21 @@ func _physics_process(delta):
 			root.angle += root.turn_speed * delta
 
 func _process(delta):
-	var score = GameState.player1_water
-
-	var red = ((score + 40) / 100)
-	var green = ((score + 20) / 100) 
-	var blue = (score / 100)
+	var score = float(GameState.player1_water)
 	
-	if score > 100:
-		leafs.modulate = Color(1, 1, 1, 1)
-	else:
-		leafs.modulate = Color(red, green, blue, 1)
-	leafs.modulate = Color(1, 1, 1, 1)
-
+	var red = (score + 40) / 100
+	var green = (score + 20) / 100
+	var blue = score / 100
 	
+	if red > 1:
+		red = 1
+	if green > 1:
+		green = 1
+	if blue > 1:
+		blue = 1
+		
+	leafs.modulate = Color(red, green, blue, 1)
+		
 func _input(event):
 	if Input.is_action_just_pressed("player1_shoot"):
 		self.set_start_position(sliderButton.get_global_position())
