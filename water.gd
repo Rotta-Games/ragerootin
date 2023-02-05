@@ -9,6 +9,8 @@ const MAX_AMOUNT = 100
 @export var amount = MAX_AMOUNT
 var drain_speed = 2
 
+@export var animation = "default"
+
 var start_amount: float
 
 var rng = RandomNumberGenerator.new()
@@ -19,10 +21,18 @@ signal player_drain
 func _ready():
 	start_amount = amount
 	var angles = [PI, 2* PI, PI/2, (3*PI)/2]
-	var rand_index = rng.randi() % angles.size()
-	self.rotation = angles[rand_index]
-	_on_animated_sprite_2d_animation_finished()
+	
+	if animation == "big_water":
+		$Area2D/CollisionShape2D.scale = Vector2(2.8, 2.8)
+		self.rotation = PI
+	else:
+		$Area2D/CollisionShape2D.scale = Vector2(1, 1)
+		var rand_index = rng.randi() % angles.size()
+		self.rotation = angles[rand_index]
+	
+	$Area2D/AnimatedSprite2D.animation = animation
 
+	_on_animated_sprite_2d_animation_finished()
 
 func _process(delta):
 	var areas = area.get_overlapping_areas()
@@ -54,4 +64,4 @@ func _on_animated_sprite_2d_animation_finished():
 	$Area2D/Timer.start(seconds)
 
 func _on_timer_timeout():
-	$Area2D/AnimatedSprite2D.play("default")
+	$Area2D/AnimatedSprite2D.play(animation)

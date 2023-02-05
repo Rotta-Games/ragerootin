@@ -1,7 +1,24 @@
-[gd_scene load_steps=10 format=3 uid="uid://7c5hvc25dmio"]
+[gd_scene load_steps=15 format=3 uid="uid://7c5hvc25dmio"]
 
 [ext_resource type="Script" path="res://water.gd" id="1_2fpow"]
 [ext_resource type="Texture2D" uid="uid://birgece44umki" path="res://assets/gfx/water_sheet.png" id="1_5uonc"]
+[ext_resource type="Texture2D" uid="uid://v0b31vklsga6" path="res://assets/gfx/waterbig_sheet.png" id="2_frxct"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_drce7"]
+atlas = ExtResource("2_frxct")
+region = Rect2(0, 0, 69, 68)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e8cg0"]
+atlas = ExtResource("2_frxct")
+region = Rect2(69, 0, 69, 68)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7bfwo"]
+atlas = ExtResource("2_frxct")
+region = Rect2(138, 0, 69, 68)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_otgln"]
+atlas = ExtResource("2_frxct")
+region = Rect2(207, 0, 69, 68)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hu1os"]
 atlas = ExtResource("1_5uonc")
@@ -25,6 +42,23 @@ region = Rect2(108, 0, 27, 27)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_r5q81"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_drce7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e8cg0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7bfwo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_otgln")
+}],
+"loop": true,
+"name": &"big_water",
+"speed": 2.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_hu1os")

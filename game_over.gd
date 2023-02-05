@@ -11,6 +11,9 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if creditsTextState > -250:
+	if creditsTextState > -360:
 		self.creditsTextState = self.creditsTextState - self.creditsTextScrollSpeed * delta
 		$ParallaxBackground.set_scroll_offset(Vector2(0,self.creditsTextState))
+	if Input.is_action_pressed("ui_accept"):
+		get_tree().change_scene_to_file("res://main.tscn")
+
