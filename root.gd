@@ -184,7 +184,8 @@ func handle_dead_split(cut_index: int):
 	call_deferred("add_child", dead_line)
 
 	dead_line.modulate = DARKEN
-	dead_line.width_curve = null
+	if not index_on_parent:
+		dead_line.width_curve = null
 
 	# remove dead split's collision stuff
 	for child in dead_line.get_children():
