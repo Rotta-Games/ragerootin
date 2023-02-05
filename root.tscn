@@ -3,14 +3,14 @@
 [ext_resource type="Script" path="res://root.gd" id="1_7sxx2"]
 [ext_resource type="Texture2D" uid="uid://bv7o8ooxybefg" path="res://assets/gfx/root.png" id="2_uevxx"]
 
-[sub_resource type="Curve" id="Curve_6r43g"]
+[sub_resource type="Curve" id="Curve_21u8g"]
 _data = [Vector2(0.139175, 0.918182), 0.0, 0.0, 0, 0, Vector2(1, 0.472727), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_hqoru"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_o13xm"]
 radius = 2.0
 
-[sub_resource type="GDScript" id="GDScript_4w3a8"]
+[sub_resource type="GDScript" id="GDScript_s6s1q"]
 script/source = "extends CollisionShape2D
 
 @export var is_root_head = true
@@ -24,7 +24,7 @@ script = ExtResource("1_7sxx2")
 [node name="Line2D" type="Line2D" parent="."]
 texture_repeat = 2
 width = 5.0
-width_curve = SubResource("Curve_6r43g")
+width_curve = SubResource("Curve_21u8g")
 texture = ExtResource("2_uevxx")
 texture_mode = 1
 joint_mode = 1
@@ -40,8 +40,8 @@ collision_mask = 0
 input_pickable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Line2D/HeadArea"]
-shape = SubResource("CircleShape2D_hqoru")
-script = SubResource("GDScript_4w3a8")
+shape = SubResource("CircleShape2D_o13xm")
+script = SubResource("GDScript_s6s1q")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="Line2D/HeadArea"]
 
