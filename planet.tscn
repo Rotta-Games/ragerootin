@@ -60,3 +60,8 @@ texture = SubResource("CanvasTexture_cqftn")
 texture = SubResource("CanvasTexture_deohx")
 
 [node name="WaterContainer" type="Node2D" parent="."]
+
+[node name="Node2D" parent="WaterContainer" instance=ExtResource("2_5887o")]
+position = Vector2(320, 177)
+scale = Vector2(2, 2)
+amount = 300
