@@ -19,7 +19,7 @@ script = ExtResource("1_vsqo3")
 
 [node name="PauseMenu" parent="." instance=ExtResource("2_vd2vg")]
 z_index = 4
-position = Vector2(140, 100)
+position = Vector2(320, 100)
 
 [node name="Planet" parent="." instance=ExtResource("3_hd06s")]
 

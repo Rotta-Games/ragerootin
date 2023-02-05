@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://c4o01vfl1bweu"]
+
+[ext_resource type="Script" path="res://instructions.gd" id="1_wvilj"]
+[ext_resource type="Texture2D" uid="uid://dxrukof1tjvco" path="res://assets/gfx/how_to_play.png" id="2_l81ae"]
+[ext_resource type="AudioStream" uid="uid://bmjuka6eyya8u" path="res://assets/music/credits.mp3" id="5_v3dg8"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_wvilj")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_v3dg8")
+autoplay = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_l81ae")
+centered = false
