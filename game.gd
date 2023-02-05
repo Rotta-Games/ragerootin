@@ -11,8 +11,10 @@ func _ready():
 func winrar():
 	if(GameState.player1_water > GameState.player2_water):
 		GameState.winner_texture = $Planet/Tree1.texture
+		GameState.winner_name = "Player 1"
 	else:
 		GameState.winner_texture = $Planet/Tree2.texture
+		GameState.winner_name = "Player 2"
 	
 	get_tree().change_scene_to_file("res://game_over.tscn")
 

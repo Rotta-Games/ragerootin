@@ -11,8 +11,6 @@
 script = ExtResource("1_bnj77")
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground"]
-position = Vector2(-27, 1)
-scale = Vector2(1.22778, 1.00833)
 texture = ExtResource("2_6xems")
 centered = false
 
