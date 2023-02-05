@@ -117,6 +117,7 @@ texture = ExtResource("4_gc8f7")
 
 [connection signal="pressed" from="Control/VBoxContainer/NewGameButton" to="Control" method="onNewGameButtonPressed"]
 [connection signal="pressed" from="Control/VBoxContainer/CreditsButton" to="Control" method="onCreditsButtonPressed"]
+[connection signal="pressed" from="Control/VBoxContainer/Instructions" to="Control" method="onInstructionsButtonPressed"]
 [connection signal="pressed" from="Control/VBoxContainer/QuitGameButton" to="Control" method="onQuitGameButtonPressed"]
 [connection signal="timeout" from="Control/Timer" to="Control" method="_on_timer_timeout"]
 [connection signal="timeout" from="Control/Timer" to="Control/Planet" method="_on_timer_timeout"]
