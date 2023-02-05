@@ -144,6 +144,8 @@ func _create_new_sub_root(pos: Vector2, angle: float, index_on_parent: int):
 	else:
 		sub_root.can_have_sub_roots = false
 	sub_root.index_on_parent = index_on_parent
+	sub_root.own_layers = own_layers
+	sub_root.enemy_layers = enemy_layers
 	sub_root.max_length = max_len + rng.randi_range(-5, max(0, sub_root_max_length - index_on_parent))
 	sub_root.texture = texture
 	sub_root.speed = 2 + rng.randi_range(1, 5)
