@@ -17,10 +17,6 @@ var state = SETUP
 
 var WATER_LAYER_MASK = 3
 
-
-func _process(delta):
-	pass
-
 func _ready():
 	pass
 	
@@ -32,7 +28,7 @@ func shoot():
 	root = new_root()
 
 func set_angle(angle):
-	root.angle = angle
+	root.angle = angle 
 
 func do_setup():
 	state = SETUP

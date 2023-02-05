@@ -7,7 +7,7 @@ var player2_water = 75
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	winner_texture = load("res://assets/gfx/tree2.png")
+	winner_texture = load("res://assets/gfx/tree2_trunk.png")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
