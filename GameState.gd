@@ -11,7 +11,13 @@ var paused = false
 func _ready():
 	winner_texture = load("res://assets/gfx/tree2_trunk.png")
 
+func reset():
+	winner_name = ""
 
+	player1_water = 75
+	player2_water = 75
+	paused = false
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass

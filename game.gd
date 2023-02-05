@@ -10,6 +10,7 @@ func _ready():
 	player1.connect("player_died", self.winrar, CONNECT_ONE_SHOT)
 	player2.connect("player_died", self.winrar, CONNECT_ONE_SHOT)
 	music_player.play_first()
+	GameState.reset()
 
 func winrar():
 	if(GameState.player1_water > GameState.player2_water):
