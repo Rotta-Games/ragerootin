@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://hau1b5rh4lky"]
+[gd_scene load_steps=4 format=3 uid="uid://bpi1d8i4t21gn"]
 
 [ext_resource type="Script" path="res://music_player.gd" id="1_47m23"]
 [ext_resource type="AudioStream" uid="uid://dsplfw4r6yw5c" path="res://assets/music/roots_pelimusa.ogg" id="3_1usb4"]

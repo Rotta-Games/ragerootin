@@ -2,11 +2,15 @@ extends Node2D
 
 @onready var player1 = $Player1
 @onready var player2 = $Player2
-
+@onready var music_player = $Music
 @onready var planet = $Planet
 
 func _ready():
 	planet.connect("planet_dry", self.winrar, CONNECT_ONE_SHOT)
+	music_player.play_first()
+
+func _exit_tree():
+	music_player.stop_all()
 
 func winrar():
 	if(GameState.player1_water > GameState.player2_water):
