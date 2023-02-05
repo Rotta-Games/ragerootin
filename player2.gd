@@ -18,15 +18,16 @@ func _physics_process(delta):
 
 func _process(delta):
 	var score = GameState.player2_water
-	
+
 	var red = ((score + 40) / 100)
 	var green = ((score + 20) / 100) 
 	var blue = (score / 100)
 	
 	if score > 100:
 		leafs.modulate = Color(1, 1, 1, 1)
-	elif:
+	else:
 		leafs.modulate = Color(red, green, blue, 1)
+	leafs.modulate = Color(1, 1, 1, 1)
 
 func _input(event):
 	if Input.is_action_just_pressed("player2_shoot"):
