@@ -1,23 +1,22 @@
-extends Control
+extends Node2D
 
-# var state = null : set = _set_state, get = _get_state
-@export
-var is_paused = false : set = set_is_paused
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	set_process_input(true) 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
-
-func _unhandled_input(event):
-	if event.is_action_pressed("pause"):
-		self.is_paused = !is_paused
-
-func set_is_paused(value: bool):
-	is_paused = value
-	get_tree().paused = is_paused
-	visible = is_paused
-	return is_paused
 	
+func _ready():
+	hide()
+	process_mode = Node.PROCESS_MODE_ALWAYS
+	
+func _input(event):
+	if event.is_action_pressed("pause"):
+		GameState.paused = !GameState.paused
+		get_tree().paused = GameState.paused
+		if GameState.paused:
+			show()
+		elif !GameState.paused:
+			hide()
+			
+	if event.is_action_pressed("enter"):
+		if GameState.paused:
+			get_tree().paused = false
+			get_tree().change_scene_to_file("res://main.tscn")

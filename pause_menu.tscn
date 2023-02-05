@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://ceamrudjtyeo4"]
+
+[ext_resource type="Script" path="res://pausemenu.gd" id="1_4nui3"]
+[ext_resource type="Texture2D" uid="uid://b1ijgi4fbgnm5" path="res://assets/gfx/menu_button.png" id="2_76uf8"]
+
+[node name="PauseMenu" type="Node2D"]
+script = ExtResource("1_4nui3")
+
+[node name="s" type="Sprite2D" parent="."]
+position = Vector2(2.08165e-12, 2.08165e-12)
+texture = ExtResource("2_76uf8")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="s"]
+offset_left = -72.0
+offset_top = -12.0
+offset_right = 81.0
+offset_bottom = 11.0
+mouse_filter = 1
+text = "Press Enter to exit"
+metadata/_edit_use_anchors_ = true
