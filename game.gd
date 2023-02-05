@@ -9,7 +9,6 @@ func _ready():
 	planet.connect("planet_dry", self.winrar, CONNECT_ONE_SHOT)
 
 func winrar():
-	print("player1 score: ", player1.score)
-	print("player2 score: ", player2.score)
+	pass
 
 
