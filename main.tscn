@@ -22,10 +22,10 @@ script = ExtResource("1_tr6f7")
 [node name="VBoxContainer" type="VBoxContainer" parent="Control"]
 z_index = 2
 layout_mode = 0
-offset_left = 31.0
-offset_top = 217.0
-offset_right = 331.0
-offset_bottom = 620.0
+offset_left = 33.0
+offset_top = 198.0
+offset_right = 333.0
+offset_bottom = 601.0
 
 [node name="NewGameButton" type="TextureButton" parent="Control/VBoxContainer"]
 layout_mode = 2
@@ -52,6 +52,19 @@ offset_right = 122.0
 offset_bottom = 28.0
 mouse_filter = 1
 text = "Credits"
+
+[node name="Instructions" type="TextureButton" parent="Control/VBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("2_bktn5")
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="Control/VBoxContainer/Instructions"]
+layout_mode = 2
+offset_left = 47.0
+offset_top = 3.0
+offset_right = 147.0
+offset_bottom = 28.0
+mouse_filter = 1
+text = "Instructions"
 
 [node name="QuitGameButton" type="TextureButton" parent="Control/VBoxContainer"]
 layout_mode = 2

@@ -32,6 +32,9 @@ func logoDrop():
 func onCreditsButtonPressed():
 	get_tree().change_scene_to_file("res://credits.tscn")
 
+func onInstructionsButtonPressed():
+	get_tree().change_scene_to_file("res://instructions.tscn")
+
 func onQuitGameButtonPressed():
 	get_tree().quit()
 
