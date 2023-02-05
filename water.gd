@@ -6,8 +6,10 @@ extends Node2D
 @onready var body = $Area2D/CollisionShape2D
 
 const MAX_AMOUNT = 100
-var amount = MAX_AMOUNT
+@export var amount = MAX_AMOUNT
 var drain_speed = 2
+
+var start_amount: float
 
 var rng = RandomNumberGenerator.new()
 
@@ -15,6 +17,7 @@ signal player_drain
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	start_amount = amount
 	var angles = [PI, 2* PI, PI/2, (3*PI)/2]
 	var rand_index = rng.randi() % angles.size()
 	self.rotation = angles[rand_index]
@@ -39,7 +42,7 @@ func _process(delta):
 
 		# small drainage when amount is low
 		amount -= delta + p1_drain + p2_drain
-		var sprite_scale = amount/MAX_AMOUNT
+		var sprite_scale = amount/start_amount
 		var body_scale = min(1, max(sprite_scale, sprite_scale*2))
 		sprite.scale = Vector2(sprite_scale, sprite_scale)
 		body.scale = Vector2(body_scale, body_scale)

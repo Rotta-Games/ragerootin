@@ -3,7 +3,7 @@ extends Node2D
 @export var water_scene: PackedScene
 
 @export var water_amount = 20
-@export var water_rings = 4
+@export var water_rings = 3
 
 @onready var water_container = $WaterContainer
 
@@ -14,7 +14,7 @@ func _ready():
 	_generate_water()
 
 
-func _process(delta):
+func _process(_delta):
 	if water_container.get_child_count() <= 0:
 		emit_signal("planet_dry")
 
@@ -22,13 +22,14 @@ func _process(delta):
 func _generate_water():
 	var earthPos = $Earth.position
 	var max_radius = $Earth/CollisionShape2D.shape.radius
-	var distance_between_rings = max_radius / water_rings;
-	var water_per_rings = water_amount / water_rings
+	var distance_between_rings = (1 + max_radius) / water_rings;
+	# var water_per_rings = int(water_amount / float(water_rings))
 	
-	for radius in range(1,max_radius,distance_between_rings):
-		for j in water_per_rings:
+	for radius in range(distance_between_rings, max_radius+1, distance_between_rings):
+		for quad in range(4):
 			var water_position = earthPos
-			var angle = randf_range(0, radius)* PI * 2
+			var quad_rad = (PI/2)*quad
+			var angle = randf_range(0, PI/2) + quad_rad
 			
 			water_position.x = (cos(angle) * radius) + earthPos.x
 			water_position.y = (sin(angle) * radius) + earthPos.y

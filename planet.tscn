@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://dv3wqd5ajjukp" path="res://assets/gfx/planet.png" id="1_kdp3x"]
 [ext_resource type="Script" path="res://planet.gd" id="1_oowm4"]
-[ext_resource type="PackedScene" uid="uid://7c5hvc25dmio" path="res://water.tscn" id="2_5887o"]
+[ext_resource type="PackedScene" uid="uid://luujl0gtps7k" path="res://water.tscn" id="2_5887o"]
 [ext_resource type="Texture2D" uid="uid://ds31bamcflny4" path="res://assets/gfx/tree_trunk.png" id="4_rdp2o"]
 [ext_resource type="Texture2D" uid="uid://dqbg84vrx58b4" path="res://assets/gfx/tree_normal.png" id="5_u8gjv"]
 [ext_resource type="Texture2D" uid="uid://bd0mana7ogxmn" path="res://assets/gfx/tree_leaves.png" id="6_jfrf4"]
@@ -60,3 +60,8 @@ texture = SubResource("CanvasTexture_cqftn")
 texture = SubResource("CanvasTexture_deohx")
 
 [node name="WaterContainer" type="Node2D" parent="."]
+
+[node name="Node2D" parent="WaterContainer" instance=ExtResource("2_5887o")]
+position = Vector2(320, 177)
+scale = Vector2(2, 2)
+amount = 300
