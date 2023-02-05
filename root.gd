@@ -3,6 +3,7 @@ extends Node2D
 @onready var line = $Line2D
 @onready var body = $Line2D/BodyArea
 @onready var head = $Line2D/HeadArea
+@onready var sub_root_container = $SubRootContainer
 
 @export var speed = 60
 @export var turn_speed = 270
@@ -45,9 +46,6 @@ var rng = RandomNumberGenerator.new()
 var initialized = false
 
 func _ready():
-	if index_on_parent == 0:
-		# ei toimi, korjaa
-		head.collision_mask = 0
 	line.texture = self.texture
 	max_segments = int(max_length / float(max_segment_length))
 	
@@ -129,7 +127,7 @@ func _grow_new_sub_root(pos : Vector2, parent_angle: float, index_on_parent: int
 
 func _create_new_sub_root(pos: Vector2, angle: float, index_on_parent: int):
 	var sub_root = root_scene.instantiate()
-	call_deferred("add_child", sub_root)
+	sub_root_container.call_deferred("add_child", sub_root)
 	sub_root.call_deferred("set_body_layers", own_layers, enemy_layers)
 	sub_root.call_deferred("init_with_args", pos, angle)
 	sub_root.can_have_sub_roots = false
@@ -203,7 +201,6 @@ func handle_dead_split(cut_index: int):
 				sub_root_tween.tween_callback(sub_root.queue_free)
 				sub_root_tween.tween_callback(sub_root_tween.kill)
 				sub_root_tween.set_ease(Tween.EASE_IN)
-
 			else:
 				break
 
