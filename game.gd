@@ -11,9 +11,6 @@ func _ready():
 	player2.connect("player_died", self.winrar, CONNECT_ONE_SHOT)
 	music_player.play_first()
 
-func _exit_tree():
-	music_player.stop_all()
-
 func winrar():
 	if(GameState.player1_water > GameState.player2_water):
 		GameState.winner_texture = $Planet/Tree1.texture

@@ -16,4 +16,3 @@ stream = ExtResource("4_n8pf3")
 autoplay = true
 
 [connection signal="finished" from="AudioStreamPlayerIntro" to="." method="_on_audio_stream_player_intro_finished"]
-[connection signal="tree_exited" from="AudioStreamPlayerIntro" to="." method="_on_audio_stream_player_intro_tree_exited"]
