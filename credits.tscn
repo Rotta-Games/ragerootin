@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://b08ww6nw44thu"]
+[gd_scene load_steps=6 format=3 uid="uid://b08ww6nw44thu"]
 
 [ext_resource type="Script" path="res://CreditsScroller.gd" id="1_bnj77"]
 [ext_resource type="Texture2D" uid="uid://dhfg7nuljhk1d" path="res://assets/gfx/background_light.png" id="2_6xems"]
 [ext_resource type="Texture2D" uid="uid://d1mku6gyauw3n" path="res://assets/gfx/credits-nologo.svg" id="3_lfjtw"]
 [ext_resource type="Texture2D" uid="uid://cc80jluy0nje7" path="res://assets/gfx/logo.png" id="4_nkwt3"]
+[ext_resource type="AudioStream" uid="uid://bmjuka6eyya8u" path="res://assets/music/credits.mp3" id="5_c0u6r"]
 
 [node name="Node2D" type="Node2D"]
 
@@ -26,3 +27,7 @@ centered = false
 [node name="Logo" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
 position = Vector2(319, 426)
 texture = ExtResource("4_nkwt3")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_c0u6r")
+autoplay = true

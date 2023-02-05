@@ -3,6 +3,7 @@ extends "res://player.gd"
 @onready var slider = $"../Player1Slider"
 @onready var sliderButton =  $"../Player1Slider/SliderButton"
 @onready var leafs = $"../Planet/Tree1/Leafs"
+@onready var leafParticles = $"../Planet/Tree1/LeafsParticles"
 	
 
 func _physics_process(delta):
@@ -37,3 +38,7 @@ func _input(event):
 	if Input.is_action_just_pressed("player1_shoot"):
 		self.set_start_position(sliderButton.get_global_position())
 		shoot()
+
+func die():
+	leafs.hide()
+	leafParticles.restart()

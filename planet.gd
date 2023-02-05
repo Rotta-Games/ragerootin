@@ -2,8 +2,8 @@ extends Node2D
 
 @export var water_scene: PackedScene
 
-@export var water_amount = 20
-@export var water_rings = 3
+var water_amount = 20
+var water_rings = 3
 
 @onready var water_container = $WaterContainer
 
@@ -25,11 +25,13 @@ func _generate_water():
 	var distance_between_rings = (1 + max_radius) / water_rings;
 	# var water_per_rings = int(water_amount / float(water_rings))
 	
-	for radius in range(distance_between_rings, max_radius+1, distance_between_rings):
-		for quad in range(4):
+	for ring in range(1, 4):
+		var radius = ring * distance_between_rings
+
+		for part in range(4 * ring):
 			var water_position = earthPos
-			var quad_rad = (PI/2)*quad
-			var angle = randf_range(0, PI/2) + quad_rad
+			var part_rad = (PI/2.0)*(ring/2.0)
+			var angle = randf_range(0, part_rad) + part_rad * part
 			
 			water_position.x = (cos(angle) * radius) + earthPos.x
 			water_position.y = (sin(angle) * radius) + earthPos.y
