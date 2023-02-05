@@ -15,10 +15,10 @@ var root_scene = preload("res://root.tscn")
 
 signal done_growing
 
-const sub_root_update_delay = 2.0
+const sub_root_update_delay = 1.5
 const sub_root_spacing = 4
-# + some rand on top of tihs
-const sub_root_max_length = 50
+# + some rand on top of this
+var sub_root_max_length = 70
 
 var can_have_sub_roots = false
 var sub_roots = []
@@ -103,6 +103,7 @@ func _check_delete():
 	return false
 
 func _process_sub_roots(delta):
+
 	rem_sub_root_update_delay -= delta
 	if rem_sub_root_update_delay > 0.0:
 		return
@@ -111,35 +112,45 @@ func _process_sub_roots(delta):
 
 	
 func _grow_new_sub_roots():
-	var spacing = sub_root_spacing + rng.randi_range(-2, 2)
+	var spacing = sub_root_spacing + rng.randi_range(-2, 3)
 	while ((line.points.size() - spacing) / spacing) > sub_roots.size():
 		var sub_root_count = sub_roots.size()
 		var next_idx = (sub_root_count * spacing) + spacing
 		var sub_root_pos = line.points[next_idx]
 		var angle = line.points[next_idx - 1].angle_to(sub_root_pos)
-		_grow_new_sub_root(sub_root_pos, angle, next_idx)
+		var created = _grow_new_sub_root(sub_root_pos, angle, next_idx)
+		if not created:
+			can_have_sub_roots = false
+			return
 	
 func _grow_new_sub_root(pos : Vector2, parent_angle: float, index_on_parent: int):
-	var left_side_angle = parent_angle - rad_to_deg(rng.randi_range(15, 50))
-	var right_side_angle = parent_angle + rad_to_deg(rng.randi_range(15, 50))
-	_create_new_sub_root(pos, left_side_angle, index_on_parent)
-	_create_new_sub_root(pos, right_side_angle, index_on_parent)
+	var left_side_angle = parent_angle - rad_to_deg(rng.randi_range(25, 65))
+	var right_side_angle = parent_angle + rad_to_deg(rng.randi_range(25, 65))
+	var create_ok = _create_new_sub_root(pos, left_side_angle, index_on_parent)
+	return create_ok && _create_new_sub_root(pos, right_side_angle, index_on_parent)
 
 func _create_new_sub_root(pos: Vector2, angle: float, index_on_parent: int):
+	var max_len = sub_root_max_length - log(sub_roots.size() * 1.5) * 10
+	if max_len < 25:
+		return false
 	var sub_root = root_scene.instantiate()
 	sub_root_container.call_deferred("add_child", sub_root)
 	sub_root.call_deferred("set_body_layers", own_layers, enemy_layers)
 	sub_root.call_deferred("init_with_args", pos, angle)
-	sub_root.can_have_sub_roots = false
-	
-	var max_len = sub_root_max_length - min(0, log(sub_roots.size() / 2))
+
+	if max_len > 35:
+		sub_root.can_have_sub_roots = true
+		sub_root.sub_root_max_length = sub_root_max_length / 2
+	else:
+		sub_root.can_have_sub_roots = false
 	sub_root.index_on_parent = index_on_parent
-	sub_root.max_length = max_len + rng.randi_range(10, 30)
+	sub_root.max_length = max_len + rng.randi_range(-5, max(0, sub_root_max_length - index_on_parent))
 	sub_root.texture = texture
-	sub_root.speed = 3 + rng.randi_range(2, 4)
+	sub_root.speed = 2 + rng.randi_range(1, 5)
 	sub_root.head_dir = head_dir
 
 	sub_roots.append(sub_root)
+	return true
 	
 func add_point(point):
 	var last_point = line.points[-1]
