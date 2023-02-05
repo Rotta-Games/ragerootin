@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://py068jmcqju2"]
+[gd_scene load_steps=5 format=3 uid="uid://b08ww6nw44thu"]
 
 [ext_resource type="Script" path="res://CreditsScroller.gd" id="1_bnj77"]
 [ext_resource type="Texture2D" uid="uid://dhfg7nuljhk1d" path="res://assets/gfx/background_light.png" id="2_6xems"]
-[ext_resource type="Texture2D" uid="uid://ck52y0qg05pkg" path="res://assets/gfx/credits.svg" id="3_q156a"]
+[ext_resource type="Texture2D" uid="uid://d1mku6gyauw3n" path="res://assets/gfx/credits-nologo.svg" id="3_lfjtw"]
+[ext_resource type="Texture2D" uid="uid://cc80jluy0nje7" path="res://assets/gfx/logo.png" id="4_nkwt3"]
 
 [node name="Node2D" type="Node2D"]
 
@@ -18,7 +19,12 @@ centered = false
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
-position = Vector2(29, 350)
+texture_filter = 2
+position = Vector2(42, 407)
 scale = Vector2(0.696474, 0.696473)
-texture = ExtResource("3_q156a")
+texture = ExtResource("3_lfjtw")
 centered = false
+
+[node name="Logo" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2(319, 426)
+texture = ExtResource("4_nkwt3")
