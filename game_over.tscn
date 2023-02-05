@@ -8,15 +8,41 @@
 [node name="game_over" type="Node2D"]
 script = ExtResource("1_h2h1d")
 
-[node name="ScoreScreen" type="Sprite2D" parent="."]
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ScoreScreen" type="Sprite2D" parent="ParallaxBackground"]
 position = Vector2(318, 180)
 texture = ExtResource("1_2l1ia")
 
-[node name="Tree" type="Node2D" parent="."]
+[node name="Tree" type="Node2D" parent="ParallaxBackground"]
 position = Vector2(530, 190)
 
-[node name="Trunk" type="Sprite2D" parent="Tree"]
+[node name="Trunk" type="Sprite2D" parent="ParallaxBackground/Tree"]
 texture = ExtResource("3_5y81g")
 
-[node name="Leaves" type="Sprite2D" parent="Tree"]
+[node name="Leaves" type="Sprite2D" parent="ParallaxBackground/Tree"]
 texture = ExtResource("4_cos0f")
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+
+[node name="RichTextLabel" type="RichTextLabel" parent="ParallaxBackground/ParallaxLayer"]
+modulate = Color(0, 0, 0, 1)
+offset_left = 74.0
+offset_top = 371.0
+offset_right = 510.0
+offset_bottom = 711.0
+scale = Vector2(0.771674, 0.842333)
+text = "Congratulations on your victory! 
+
+Your roots have reached further and deeper than any other tree, securing access to the precious remaining water of the world. 
+
+While this is a triumph for you, it is a reminder of the harsh reality of a world without enough resources for all. May we learn from this game and strive towards a better future for our planet."
+
+[node name="WinnerLabel" type="RichTextLabel" parent="ParallaxBackground"]
+modulate = Color(0, 0, 0, 1)
+offset_left = 451.0
+offset_top = 66.0
+offset_right = 613.0
+offset_bottom = 106.0
+fit_content = true
+scroll_active = false
