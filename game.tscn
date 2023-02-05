@@ -11,7 +11,7 @@
 [ext_resource type="Script" path="res://player2.gd" id="7_nc2dq"]
 [ext_resource type="PackedScene" uid="uid://d0oagn0brtevv" path="res://lights.tscn" id="9_6sf3a"]
 [ext_resource type="Texture2D" uid="uid://t5wwaso2n6g3" path="res://assets/gfx/root2.png" id="9_8b883"]
-[ext_resource type="PackedScene" path="res://music_player.tscn" id="10_hsxoa"]
+[ext_resource type="PackedScene" uid="uid://hau1b5rh4lky" path="res://music_player.tscn" id="10_hsxoa"]
 
 [node name="game" type="Node2D"]
 script = ExtResource("1_vsqo3")

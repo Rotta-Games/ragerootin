@@ -1,7 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://hau1b5rh4lky"]
 
 [ext_resource type="Script" path="res://music_player.gd" id="1_47m23"]
-[ext_resource type="AudioStream" uid="uid://cfrjvsjd5bjn0" path="res://assets/music/roots_pelimusa.mp3" id="2_x87gx"]
 [ext_resource type="AudioStream" uid="uid://dsplfw4r6yw5c" path="res://assets/music/roots_pelimusa.ogg" id="3_1usb4"]
 [ext_resource type="AudioStream" uid="uid://cakcdyg88v66w" path="res://assets/music/roots_intro.ogg" id="4_n8pf3"]
 
