@@ -5,6 +5,7 @@ extends "res://player.gd"
 @onready var leafs = $"../Planet/Tree1/Leafs"
 @onready var leafParticles = $"../Planet/Tree1/LeafsParticles"
 	
+signal player1_died
 
 func _physics_process(delta):
 	if Input.is_action_pressed("player1_move_left") || Input.is_action_pressed("player1_move_up"):
@@ -19,6 +20,14 @@ func _physics_process(delta):
 			root.angle += root.turn_speed * delta
 
 func _process(delta):
+	if not self.alive:
+		return
+
+	GameState.player1_water -= self.DRYING_SPEED * delta
+	if GameState.player1_water <= 0:
+		GameState.player1_water = 0
+		die()
+
 	var score = float(GameState.player1_water)
 	
 	var red = (score + 40) / 100
@@ -40,5 +49,7 @@ func _input(event):
 		shoot()
 
 func die():
+	self.alive = false
+	emit_signal("player1_died")
 	leafs.hide()
 	leafParticles.restart()

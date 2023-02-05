@@ -10,12 +10,14 @@ var root = null
 @export var enemy_layer = 0
 
 var start_pos = Vector2(0, 0)
+var alive = true
 
 enum {END, SETUP, MOVING}
 
 var state = SETUP
 
 var WATER_LAYER_MASK = 3
+const DRYING_SPEED = 5
 
 func _ready():
 	pass
