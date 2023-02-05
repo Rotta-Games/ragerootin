@@ -7,7 +7,7 @@ extends Node2D
 
 const MAX_AMOUNT = 100
 var amount = MAX_AMOUNT
-var drain_speed = 5
+var drain_speed = 2
 
 var rng = RandomNumberGenerator.new()
 
@@ -21,10 +21,17 @@ func _ready():
 
 func _process(delta):
 	var areas = area.get_overlapping_areas()
-	var count = areas.size()
+	var p1_found = false
+	var p2_found = false
+	for collision in areas:
+		if collision.find_parent("Player1"):
+			p1_found = true
+		if collision.find_parent("Player2"):
+			p2_found = true
 
-	if count or amount <= 20:
+	if p1_found or p2_found or amount <= 20:
 		# small drainage when amount is low
+		var count = int(p1_found) + int(p2_found)
 		amount -= delta + count * delta * drain_speed
 		var sprite_scale = amount/MAX_AMOUNT
 		var body_scale = min(1, max(sprite_scale, sprite_scale*2))
