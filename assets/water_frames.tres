@@ -1,0 +1,49 @@
+[gd_resource type="SpriteFrames" load_steps=7 format=3 uid="uid://e1nd56nhvume"]
+
+[ext_resource type="Texture2D" uid="uid://birgece44umki" path="res://assets/gfx/water_sheet.png" id="1_iuicx"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hu1os"]
+atlas = ExtResource("1_iuicx")
+region = Rect2(0, 0, 27, 27)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pcf8d"]
+atlas = ExtResource("1_iuicx")
+region = Rect2(27, 0, 27, 27)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8m568"]
+atlas = ExtResource("1_iuicx")
+region = Rect2(54, 0, 27, 27)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_725wp"]
+atlas = ExtResource("1_iuicx")
+region = Rect2(81, 0, 27, 27)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wievb"]
+atlas = ExtResource("1_iuicx")
+region = Rect2(108, 0, 27, 27)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hu1os")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pcf8d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8m568")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_725wp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wievb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hu1os")
+}],
+"loop": false,
+"name": &"default",
+"speed": 8.0
+}]

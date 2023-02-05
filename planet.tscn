@@ -2,12 +2,12 @@
 
 [ext_resource type="Texture2D" uid="uid://dv3wqd5ajjukp" path="res://assets/gfx/planet.png" id="1_kdp3x"]
 [ext_resource type="Script" path="res://planet.gd" id="1_oowm4"]
-[ext_resource type="PackedScene" uid="uid://luujl0gtps7k" path="res://water.tscn" id="2_5887o"]
+[ext_resource type="PackedScene" uid="uid://7c5hvc25dmio" path="res://water.tscn" id="2_5887o"]
 [ext_resource type="Texture2D" uid="uid://ds31bamcflny4" path="res://assets/gfx/tree_trunk.png" id="4_rdp2o"]
 [ext_resource type="Texture2D" uid="uid://dqbg84vrx58b4" path="res://assets/gfx/tree_normal.png" id="5_u8gjv"]
 [ext_resource type="Texture2D" uid="uid://bd0mana7ogxmn" path="res://assets/gfx/tree_leaves.png" id="6_jfrf4"]
 [ext_resource type="Texture2D" uid="uid://dtiwi312wcq7h" path="res://assets/gfx/tree2_trunk.png" id="7_51b4y"]
-[ext_resource type="Texture2D" uid="uid://c0nih7civvhay" path="res://assets/gfx/dead_leaf.png" id="7_lyonl"]
+[ext_resource type="Texture2D" uid="uid://b64irkkt7nfpq" path="res://assets/gfx/dead_leaf.png" id="7_lyonl"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_njt6a"]
 radius = 150.0
@@ -117,3 +117,8 @@ scale_amount_min = 0.1
 scale_amount_max = 0.3
 
 [node name="WaterContainer" type="Node2D" parent="."]
+
+[node name="Node2D" parent="WaterContainer" instance=ExtResource("2_5887o")]
+position = Vector2(320, 177)
+amount = 300
+animation = "big_water"

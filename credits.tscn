@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://py068jmcqju2"]
+[gd_scene load_steps=6 format=3 uid="uid://b08ww6nw44thu"]
 
 [ext_resource type="Script" path="res://CreditsScroller.gd" id="1_bnj77"]
 [ext_resource type="Texture2D" uid="uid://dhfg7nuljhk1d" path="res://assets/gfx/background_light.png" id="2_6xems"]

@@ -1,6 +1,7 @@
 extends Node
 
 @onready var audio_player_loop = $AudioStreamPlayerLoop
+@onready var audio_player_intro = $AudioStreamPlayerIntro
 @export var loop_stream : AudioStream 
 
 
@@ -17,4 +18,11 @@ func _process(delta):
 
 func _on_audio_stream_player_intro_finished():
 	audio_player_loop.play()
+
+func play_first():
+	audio_player_intro.play()
+
+func stop_all():
+	audio_player_intro.stop()
+	audio_player_loop.stop()
 
