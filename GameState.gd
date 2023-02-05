@@ -5,6 +5,7 @@ var winner_name = ""
 
 var player1_water = 75
 var player2_water = 75
+var paused = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
