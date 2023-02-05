@@ -2,6 +2,8 @@ extends Node2D
 
 @export var root_texture: CompressedTexture2D
 
+@onready var die_timer = $DieTimer
+
 var root_scene = preload("res://root.tscn")
 
 var root = null
@@ -18,6 +20,8 @@ var state = SETUP
 
 var WATER_LAYER_MASK = 3
 const DRYING_SPEED = 5
+
+signal player_died
 
 func _ready():
 	pass
@@ -51,3 +55,7 @@ func new_root():
 	root.can_have_sub_roots = true
 	# root.set_layers(own_layer, enemy_layer)
 	return root
+
+
+func die_complete():
+	emit_signal("player_died")

@@ -5,9 +5,10 @@ extends "res://player.gd"
 @onready var leafs = $"../Planet/Tree2/Leafs"
 @onready var leafParticles = $"../Planet/Tree2/LeafsParticles"
 
-signal player2_died
 
 func _physics_process(delta):
+	if not self.alive:
+		return
 	if Input.is_action_pressed("player2_move_left") || Input.is_action_pressed("player2_move_down"):
 		if state == SETUP:
 			slider.move_left()
@@ -50,6 +51,6 @@ func _input(event):
 
 func die():
 	self.alive = false
-	emit_signal("player2_died")
 	leafs.hide()
 	leafParticles.restart()
+	self.die_timer.start()

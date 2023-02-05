@@ -7,6 +7,8 @@ extends Node2D
 
 func _ready():
 	planet.connect("planet_dry", self.winrar, CONNECT_ONE_SHOT)
+	player1.connect("player_died", self.winrar, CONNECT_ONE_SHOT)
+	player2.connect("player_died", self.winrar, CONNECT_ONE_SHOT)
 
 func winrar():
 	if(GameState.player1_water > GameState.player2_water):
