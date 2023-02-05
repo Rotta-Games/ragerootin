@@ -19,7 +19,7 @@ enum {END, SETUP, MOVING}
 var state = SETUP
 
 var WATER_LAYER_MASK = 3
-const DRYING_SPEED = 5
+const DRYING_SPEED = 10
 
 signal player_died
 

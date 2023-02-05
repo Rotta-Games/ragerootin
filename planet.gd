@@ -43,5 +43,5 @@ func _generate_water():
 
 
 func _on_player_drain_water(p1_drain, p2_drain):
-	GameState.player1_water += p1_drain
-	GameState.player2_water += p2_drain
+	GameState.player1_water = clamp(GameState.player1_water + p1_drain, 0, 100)
+	GameState.player2_water = clamp(GameState.player2_water + p2_drain, 0, 100)
