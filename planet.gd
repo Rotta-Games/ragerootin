@@ -36,3 +36,9 @@ func _generate_water():
 			var water = water_scene.instantiate()
 			water_container.add_child(water)
 			water.set_global_position(water_position)
+			water.connect("player_drain", self._on_player_drain_water)
+
+
+func _on_player_drain_water(p1_drain, p2_drain):
+	GameState.player1_water += p1_drain
+	GameState.player2_water += p2_drain

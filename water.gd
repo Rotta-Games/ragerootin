@@ -11,6 +11,8 @@ var drain_speed = 2
 
 var rng = RandomNumberGenerator.new()
 
+signal player_drain
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	var angles = [PI, 2* PI, PI/2, (3*PI)/2]
@@ -30,9 +32,13 @@ func _process(delta):
 			p2_found = true
 
 	if p1_found or p2_found or amount <= 20:
+		var p1_drain = int(p1_found) * delta * drain_speed
+		var p2_drain = int(p2_found) * delta * drain_speed
+
+		emit_signal("player_drain", p1_drain, p2_drain)
+
 		# small drainage when amount is low
-		var count = int(p1_found) + int(p2_found)
-		amount -= delta + count * delta * drain_speed
+		amount -= delta + p1_drain + p2_drain
 		var sprite_scale = amount/MAX_AMOUNT
 		var body_scale = min(1, max(sprite_scale, sprite_scale*2))
 		sprite.scale = Vector2(sprite_scale, sprite_scale)
